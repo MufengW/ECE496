@@ -2,8 +2,8 @@
 ## Getting Started
 ### Dependencies
 Python 3.6
-
-Binance Connector For Python  ```pip install binance-connector```
+#### Installations
+```pip install binance-connector```
 
 ### Documentations
 * [Binance Python Connector](https://binance-connector.readthedocs.io)
