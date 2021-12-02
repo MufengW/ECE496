@@ -1,0 +1,6 @@
+[submodule "binance-connector-python"]
+	path = binance-connector-python
+	url = git@github.com:binance/binance-connector-python.git
+[submodule "binance-public-data"]
+	path = binance-public-data
+	url = git@github.com:binance/binance-public-data.git
