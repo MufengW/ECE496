@@ -4,3 +4,6 @@
 [submodule "binance-public-data"]
 	path = binance-public-data
 	url = git@github.com:binance/binance-public-data.git
+[submodule "python-binance"]
+	path = python-binance
+	url = git@github.com:sammchardy/python-binance.git
