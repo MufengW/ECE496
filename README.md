@@ -2,6 +2,10 @@
 ## Getting Started
 ### Dependencies
 Python 3.x
+
+binance-connector
+
+python-binance
 #### Installations
 ```python3 -m pip install binance-connector```
 
