@@ -20,7 +20,6 @@ params = {
 
 client = Client(key, secret, base_url="https://testnet.binance.vision")
 initial_account_status = client.account()
-final_account_status = client.account()
 
 last_ticker_book_price = client.book_ticker(SYMBOL)
 wait_until_this_time = time.time() + 2
@@ -55,5 +54,6 @@ for i in range(100):
             )
         print('transaction')
     last_ticker_book_price = ticker_book_price
+final_account_status = client.account()
 print(initial_account_status)
 print(final_account_status)
