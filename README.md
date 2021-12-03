@@ -1,20 +1,21 @@
 # ECE496
 ## Getting Started
 ### Dependencies
-Python 3.x
+Python 3.x   
+binance-connector (v:stable)   
+python-binance (v:latest)   
+pandas 1.1.3   
+numpy   
+pytorch
 
-binance-connector
-
-python-binance
 #### Installations
-```python3 -m pip install binance-connector```
-
+```python3 -m pip install binance-connector```   
 ```python3 -m pip install python-binance```
 
-### READ BEFORE START!
+### Risk Alert READ BEFORE START!
 All automatic trading programmes can cause loss. When testing the functions, please use the Binance testNet which provides an experimental platform that does not involve real assets. Find more information [Here](https://testnet.binance.vision/) to learn more about Binance testnet. 
 
-This repository is not part of Binance official API repo. The authors are not affiliated to Binance. Please use at your own risk. DO NOT RUN ANY CODE THAT YOU DON'T UNDERSTAND 100%!
+This repository is not part of the Binance official API repo. The authors are not affiliated to Binance. Please use at your own risk. DO NOT RUN ANY CODE THAT YOU DON'T UNDERSTAND 100%! Please make sure that you have deleted any API Keys in the code before pushing to the upstream. Failing doing that may cause serious consequences.
 
 ### Related Documentations and Materials
 * [Python-Binance Doc](https://python-binance.readthedocs.io/en/latest/)
