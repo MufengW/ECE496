@@ -1,11 +1,11 @@
 # ECE496
 ## Getting Started
 ### Dependencies
-Python 3.6
+Python 3.x
 #### Installations
-```python3.6 -m pip install binance-connector```
+```python3 -m pip install binance-connector```
 
-```python3.6 -m pip install python-binance```
+```python3 -m pip install python-binance```
 
 ### Related Documentations and Materials
 * [Python-Binance Doc](https://python-binance.readthedocs.io/en/latest/)
