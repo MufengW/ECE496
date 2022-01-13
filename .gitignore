@@ -1,0 +1,4 @@
+*logs
+*out
+*.pyc
+astibot.settings
