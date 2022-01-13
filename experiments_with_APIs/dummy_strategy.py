@@ -13,9 +13,9 @@ params = {
     "symbol": SYMBOL,
     "side": "SELL",
     "type": "MARKET",
-    "timeInForce": "GTC",
+    # "timeInForce": "GTC",
     "quantity": 0.01,
-    "price": 0,
+    # "price": 0,
 }
 
 client = Client(key, secret, base_url="https://testnet.binance.vision")
@@ -29,7 +29,7 @@ for i in range(100):
     wait_until_this_time = time.time() + 2
     if ticker_book_price['bidPrice'] > last_ticker_book_price['askPrice']:
         params['side'] = "BUY"
-        params['price'] = ticker_book_price['askPrice']
+        # params['price'] = ticker_book_price['askPrice']
         try:
             response = client.new_order(**params)
             logging.info(response)
@@ -42,7 +42,7 @@ for i in range(100):
         print('transaction')
     elif ticker_book_price['askPrice'] < last_ticker_book_price['bidPrice']:
         params['side'] = "SELL"
-        params['price'] = ticker_book_price['bidPrice']
+        # params['price'] = ticker_book_price['bidPrice']
         try:
             response = client.new_order(**params)
             logging.info(response)
