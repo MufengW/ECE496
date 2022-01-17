@@ -4,13 +4,13 @@ CONFIG_VERSION = "1.3.1"
 ######## Operational Parameters
 #####################################################################################################################
 
-# False: CSV file input. True: Real-time market price 
+# False: CSV file input. True: Real-time market price
 CONFIG_INPUT_MODE_IS_REAL_MARKET = True
 
 # Main ticker : Retrieves the next samples and processes them
 CONFIG_MAIN_TICK_DURATION_IN_MS = 200
 
-# Terrestrial time between two retrieved sample. 
+# Terrestrial time between two retrieved sample.
 #Should be equal to CONFIG_MAIN_TICK_DURATION_IN_MS in live mode, custom value in simulation mode that
 # depends on the csv file sampling time
 CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS = 10000
@@ -70,7 +70,7 @@ CONFIG_RiskLinePercentsAboveThresholdToBuy = 0.994
 CONFIG_MAX_BUY_PRICE = 100000
 
 
-# Buy policy: 
+# Buy policy:
 #     When MACD indicator is < BUY1 THRESHOLD : No buy signal, do nothing
 #     When MACD indicator is > BUY1 THRESHOLD and < BUY1 THRESHOLD : Try to place a buy limit order on top of the order book
 #     When MACD indicator is > BUY2 THRESHOLD : Do a market buy order

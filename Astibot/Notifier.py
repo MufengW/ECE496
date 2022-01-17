@@ -8,13 +8,12 @@ def SendWhatsappMessage(messageToSend):
 #         account_sid = '<fill id here>'
 #         auth_token = '<fill id here>'
 #         client = Client(account_sid, auth_token)
-#         
-#         
+#
+#
 #         message = client.messages.create(
 #                                       body=messageToSend,
 #                                       from_='whatsapp:+<fill number here>',
 #                                       to='whatsapp:+<fill number here>'
 #                                   )
-#              
+#
 #         print("NOTI - Sent message, %s" % message)
-        

@@ -72,7 +72,7 @@ class GDAXControler():
         # MURPHY: TODO: key/secret?
         self.clientPublic = Client(base_url="https://testnet.binance.vision")
 
-        # Start background thread        
+        # Start background thread
         threadRefreshPrice = threading.Timer(1, self.updateRealTimePriceInBackground)
         threadRefreshPrice.start()
 
@@ -96,7 +96,7 @@ class GDAXControler():
             self.close()
             print("GDAX - Reseting Order book...")
             self.reset_book()
-            # Orderbook class does not reset sequence number when changing product : set it to -1 will force orderbook to refresh 
+            # Orderbook class does not reset sequence number when changing product : set it to -1 will force orderbook to refresh
             # the sequence number and retrieve the last full order book
             self._sequence = -1
 
@@ -388,7 +388,7 @@ class GDAXControler():
                         self.matchOrderProcessedSequenceId = message['sequence']
                         self.currentOrderState = "MATCHED"
 
-        # Order book has been updated, retrieve best bid and ask         
+        # Order book has been updated, retrieve best bid and ask
         self.liveBestBidPrice = self.get_bid()
         # print("Bid %s" % self.liveBestBidPrice)
         self.liveBestAskPrice = self.get_ask()
@@ -586,7 +586,7 @@ class GDAXControler():
                 # Send Limit order
             amountToSellInCrypto = round(amountToSellInCrypto, 8)
 
-            # Don't use round because order could be placed on the other side of the spread -> rejected            
+            # Don't use round because order could be placed on the other side of the spread -> rejected
             # Prix exprimé en BTC, arrondi variable
             if (self.productFiatStr == "BTC"):
                 if (self.productCryptoStr == "LTC"):
@@ -830,7 +830,7 @@ class GDAXControler():
 
             startSlice = stopSlice  # Prepare next iteration
 
-            # Progress report 
+            # Progress report
             nbLoopIterations = nbLoopIterations + 1
             percentage = round(nbLoopIterations * 100 / nbIterationsToRetrieveEverything)
             if (percentage > 100):
