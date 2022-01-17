@@ -100,9 +100,10 @@ class InputDataHandler(object):
                 
             nbOfSamplesToDisplayOnGraph = theConfig.CONFIG_NB_POINTS_LIVE_TRADING_GRAPH   
             print("INDH - Choosen to display %s points on graph" % nbOfSamplesToDisplayOnGraph)
-            self.theUIGraph.UIGR_ResetAllGraphData(False, -1, int(nbOfSamplesToDisplayOnGraph))   
-            
-            [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+            self.theUIGraph.UIGR_ResetAllGraphData(False, -1, int(nbOfSamplesToDisplayOnGraph))
+            self.retrievedTime = 0
+            self.retrievedPrice = 0
+            #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
             currentTimeStamp = self.retrievedTime
             endOfList = False
             timeStep = theConfig.CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS / 1000
@@ -114,7 +115,9 @@ class InputDataHandler(object):
                     self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
                     currentTimeStamp = self.retrievedTime
                     # Get next sample in memory
-                    [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+                    self.retrievedTime = 0
+                    self.retrievedPrice = 0
+                    #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
                 else:
                     # Interpolate with previous sample value
                     currentTimeStamp = currentTimeStamp + timeStep
@@ -164,7 +167,9 @@ class InputDataHandler(object):
         batchSamplesSizeForSpeed = self.theSettings.SETT_GetSettings()["simulationSpeed"] + 2
         batchSamplesInitGraph = theConfig.CONFIG_NB_POINTS_INIT_SIMU_GRAPH * self.getCurrentSubSchedulingFactor()
         nbHistoricSamplesRetrieved = 0
-        [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+        self.retrievedTime = 0
+        self.retrievedPrice = 0
+        #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
         currentTimeStamp = self.retrievedTime
         endOfList = False
         timeStep = theConfig.CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS / 1000
@@ -178,7 +183,9 @@ class InputDataHandler(object):
                 self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
                 currentTimeStamp = self.retrievedTime
                 # Get next sample in memory
-                [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+                self.retrievedTime = 0
+                self.retrievedPrice = 0
+                #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
             else:
                 # Interpolate with previous sample value
                 currentTimeStamp = currentTimeStamp + timeStep
