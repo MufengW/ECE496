@@ -796,37 +796,35 @@ class GDAXControler():
                 stopSlice = stopTimestamp
             print("GDAX - Start TS : %s  stop TS : %s" % (startSlice, stopSlice))
 
-            startTimestampSliceInISO = datetime.fromtimestamp(startSlice, tz).isoformat()
-            stopTimestampSliceInISO = datetime.fromtimestamp(stopSlice, tz).isoformat()
+            startTimestampSliceInISO = datetime.fromtimestamp(startSlice, tz)
+            stopTimestampSliceInISO = datetime.fromtimestamp(stopSlice, tz)
+            #startTimestampSliceInISO = datetime.fromtimestamp(startSlice, tz).isoformat()
+            #stopTimestampSliceInISO = datetime.fromtimestamp(stopSlice, tz).isoformat()
             print("GDAX - Retrieving Historic Data from %s to %s" % (startTimestampSliceInISO, stopTimestampSliceInISO))
             if (self.IsConnectedAndOperational == "True"):
                 print("GDAX - Using public client to retrieve historic prices")
-                #HistoricDataSlice = self.clientAuth.get_product_historic_rates(self.productStr,
-                #                                                               granularity=granularityInSec,
-                #                                                               start=startTimestampSliceInISO,
-                #                                                               end=stopTimestampSliceInISO)
+                # MURPHY TODO: hardcode productstr
+                HistoricDataSlice = self.clientAuth.klines("BTCUSDT",interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
                 # Only sleep if reloop condition is met
                 if (stopSlice < stopTimestamp):
                     time.sleep(0.350)
                 print("GDAX - Using private client to retrieve historic prices")
-            #else:
-                #HistoricDataSlice = self.clientPublic.get_product_historic_rates(self.productStr,
-                #                                                                 granularity=granularityInSec,
-                #                                                                 start=startTimestampSliceInISO,
-                #                                                                 end=stopTimestampSliceInISO)
+            else:
+                # MURPHY TODO: hardcode productstr
+                HistoricDataSlice = self.clientPublic.klines("BTCUSDT",interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
                 # Only sleep if reloop condition is met
                 if (stopSlice < stopTimestamp):
                     time.sleep(0.250)
                 print("GDAX - Using public client to retrieve historic prices")
 
-            #print("GDAX - Size of HistoricDataSlice: %s" % len(HistoricDataSlice))
+            print("GDAX - Size of HistoricDataSlice: %s" % len(HistoricDataSlice))
 
-            #try:  # parfois le reversed crash. Pas de data dans la slice ?
-            #    for slice in reversed(HistoricDataSlice):
-            #        self.HistoricDataRaw.append(slice)
-            #except BaseException as e:
-            #    print("GDAX - Exception when reversing historic data slice")
-            # print("Historic : %s " % HistoricDataSlice)
+            try:  # parfois le reversed crash. Pas de data dans la slice ?
+                for slice in reversed(HistoricDataSlice):
+                    self.HistoricDataRaw.append(slice)
+            except BaseException as e:
+                print("GDAX - Exception when reversing historic data slice")
+            print("Historic : %s " % HistoricDataSlice)
 
             startSlice = stopSlice  # Prepare next iteration
 
