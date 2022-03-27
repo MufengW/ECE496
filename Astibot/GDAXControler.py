@@ -70,7 +70,10 @@ class GDAXControler():
         self.IsConnectedAndOperational = "False"
 
         # MURPHY: TODO: key/secret?
-        self.clientPublic = Client(base_url="https://testnet.binance.vision")
+        self.base_url = "https://testnet.binance.vision"
+        self.clientPublic = Client(self.base_url)
+        self.key = "5St8GRwYWckPOeWpp88FZQx87A5KRR6A9dDnV6BQVIOBSy2XGk2xRGpOPei2CgWk"
+        self.secret = "teQDw85j5jDk8EokZDd4aaBDfHP0p9HCOqpYVzb2MyzU3EDLGIBmjKcOUUTFmdYZ"
 
         # Start background thread
         threadRefreshPrice = threading.Timer(1, self.updateRealTimePriceInBackground)
@@ -104,9 +107,7 @@ class GDAXControler():
             self.liveBestAskPrice = 0
 
     def startWebSocketFeed(self):
-        key = "5St8GRwYWckPOeWpp88FZQx87A5KRR6A9dDnV6BQVIOBSy2XGk2xRGpOPei2CgWk"
-        secret = "teQDw85j5jDk8EokZDd4aaBDfHP0p9HCOqpYVzb2MyzU3EDLGIBmjKcOUUTFmdYZ"
-        twm = ThreadedWebsocketManager(api_key=key, api_secret=secret)
+        twm = ThreadedWebsocketManager(api_key=self.key, api_secret=self.secret)
         # start is required to initialise its internal loop
         twm.start()
 
@@ -123,9 +124,7 @@ class GDAXControler():
         self.api_secret = self.theSettings.SETT_GetSettings()["strSecretKey"]
 
         try:
-            key = "5St8GRwYWckPOeWpp88FZQx87A5KRR6A9dDnV6BQVIOBSy2XGk2xRGpOPei2CgWk"
-            secret = "teQDw85j5jDk8EokZDd4aaBDfHP0p9HCOqpYVzb2MyzU3EDLGIBmjKcOUUTFmdYZ"
-            self.clientAuth = Client(key, secret, base_url="https://testnet.binance.vision")
+            self.clientAuth = Client(self.key, self.secret, base_url=self.base_url)
         except ClientError as e:
             print("GDAX - Client connection error")
             print("GDAX - Exception : " + str(e))
