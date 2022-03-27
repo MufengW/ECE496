@@ -69,10 +69,10 @@ class AppState(object):
         self.theUIGraph.UIGR_SetPauseButtonEnabled(False)
         self.theUIGraph.UIGR_SetPauseButtonAspect("PAUSE_DISABLED")
         self.theUIGraph.UIGR_SetSettingsButtonsEnabled(False)
-        self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
+        # self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
 
         self.theGDAXControler.GDAX_InitializeGDAXConnection()
-        self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
+        # self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
         self.theInputDataHandler.INDH_PrepareHistoricDataSinceGivenHours(True, theConfig.NB_HISTORIC_DATA_HOURS_TO_PRELOAD_FOR_TRADING)
 
 
@@ -87,7 +87,7 @@ class AppState(object):
                 self.theUIGraph.UIGR_SetStartButtonAspect("START")
                 self.theUIGraph.UIGR_SetSettingsButtonsEnabled(True)
                 self.theTrader.TRAD_InitiateNewTradingSession(False) # Force accounts balances display refresh
-                self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
+                # self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
                 print("APPL - Init: go to idle")
         elif (self.theGDAXControler.GDAX_IsConnectedAndOperational() == "False"):
             self.nextAppState = 'STATE_FAILURE'
@@ -116,7 +116,7 @@ class AppState(object):
                 self.theUIGraph.UIGR_SetStartButtonAspect("LOADING")
                 self.theUIGraph.UIGR_SetRadioButtonsEnabled(False)
                 self.theUIGraph.UIGR_SetSettingsButtonsEnabled(False)
-                self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
+                # self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
                 self.nextAppState = 'STATE_SIMULATION_LOADING'
             else:
                 # If Fiat balance is OK
@@ -128,7 +128,7 @@ class AppState(object):
                     self.theUIGraph.UIGR_SetStartButtonAspect("LOADING")
                     self.theUIGraph.UIGR_SetRadioButtonsEnabled(False)
                     self.theUIGraph.UIGR_SetSettingsButtonsEnabled(False)
-                    self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
+                    # self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
                     self.nextAppState = 'STATE_TRADING_LOADING'
                 else:
                     # Fiat balance too small, stay in Idle
@@ -193,7 +193,7 @@ class AppState(object):
             self.theUIGraph.UIGR_SetPauseButtonAspect("PAUSE_DISABLED")
             self.theUIGraph.UIGR_SetRadioButtonsEnabled(True)
             self.theUIGraph.UIGR_SetSettingsButtonsEnabled(True)
-            self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
+            # self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
             # Set new state in anticipation to UIGR so that it will prepare the right captions
             self.theUIGraph.UIGR_SetCurrentAppState(self.nextAppState)
             self.theTrader.TRAD_TerminateTradingSession()
@@ -208,7 +208,7 @@ class AppState(object):
             self.theUIGraph.UIGR_SetPauseButtonAspect("PAUSE_DISABLED")
             self.theUIGraph.UIGR_SetRadioButtonsEnabled(True)
             self.theUIGraph.UIGR_SetSettingsButtonsEnabled(True)
-            self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
+            # self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
             # Set new state in anticipation to UIGR so that it will prepare the right captions
             self.theUIGraph.UIGR_SetCurrentAppState(self.nextAppState)
             self.theTrader.TRAD_TerminateTradingSession()
@@ -236,7 +236,7 @@ class AppState(object):
                 self.theUIGraph.UIGR_SetRadioButtonsEnabled(True)
                 self.theUIGraph.UIGR_SetStartButtonAspect("START")
                 self.theUIGraph.UIGR_SetSettingsButtonsEnabled(True)
-                self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
+                # self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
         else:
             # Wait
             print("APPL - ManageTradingLoadingState - Loading ongoing")
@@ -257,7 +257,7 @@ class AppState(object):
             self.theUIGraph.UIGR_SetPauseButtonEnabled(False)
             self.theUIGraph.UIGR_SetRadioButtonsEnabled(True)
             self.theUIGraph.UIGR_SetSettingsButtonsEnabled(True)
-            self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
+            # self.theUIGraph.UIGR_SetDonationButtonsEnabled(True)
             # Set new state in anticipation to UIGR so that it will prepare the right captions
             self.theUIGraph.UIGR_SetCurrentAppState(self.nextAppState)
             self.theTrader.TRAD_TerminateTradingSession()

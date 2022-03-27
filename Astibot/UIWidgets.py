@@ -40,17 +40,17 @@ class ButtonHoverSettings(QtGui.QPushButton):
     def leaveEvent(self, QEvent):
         self.lblToolTip.setText("")
 
-class ButtonHoverDonation(QtGui.QPushButton):
+# class ButtonHoverDonation(QtGui.QPushButton):
 
-    def __init__(self, inLblToolTip, parent=None):
-        super(QtGui.QPushButton, self).__init__(parent)
-        self.lblToolTip = inLblToolTip
+#     def __init__(self, inLblToolTip, parent=None):
+#         super(QtGui.QPushButton, self).__init__(parent)
+#         self.lblToolTip = inLblToolTip
 
-    def enterEvent(self, QEvent):
-        self.lblToolTip.setText("Open Donation page")
+#     def enterEvent(self, QEvent):
+#         self.lblToolTip.setText("Open Donation page")
 
-    def leaveEvent(self, QEvent):
-        self.lblToolTip.setText("")
+#     def leaveEvent(self, QEvent):
+#         self.lblToolTip.setText("")
 
 class ButtonHoverInfo(QtGui.QPushButton):
 
@@ -119,9 +119,13 @@ class LabelClickable(QtGui.QLabel):
         QtGui.QLabel.__init__(self, parent)
         self.UIsAreSet = False
 
-    def SetUIs(self, UISettings, UIDonation):
+    # def SetUIs(self, UISettings, UIDonation):
+    #     self.theUISettings = UISettings
+    #     self.theUIDonation = UIDonation
+    #     self.UIsAreSet = True
+    
+    def SetUIs(self, UISettings):
         self.theUISettings = UISettings
-        self.theUIDonation = UIDonation
         self.UIsAreSet = True
 
     def mousePressEvent(self, event):
@@ -130,6 +134,5 @@ class LabelClickable(QtGui.QLabel):
         if (self.UIsAreSet == True):
             if (("Welcome" in self.text()) == True):
                 self.theUISettings.UIST_ShowWindow()
-            elif (("here to unlock" in self.text()) == True):
-                self.theUIDonation.UILI_ShowWindow()
-
+            # elif (("here to unlock" in self.text()) == True):
+            #     self.theUIDonation.UILI_ShowWindow()

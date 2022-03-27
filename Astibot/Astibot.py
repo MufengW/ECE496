@@ -1,3 +1,11 @@
+'''
+Author: your name
+Date: 2022-03-27 14:38:45
+LastEditTime: 2022-03-27 16:45:35
+LastEditors: your name
+Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+FilePath: \git\ECE496\Astibot\Astibot.py
+'''
 #!.
 
 
@@ -51,7 +59,7 @@ class TradingBot(object):
         self.theGDAXControler = GDAXControler(self.theUIGraph, self.theSettings)
         self.theMarketData = MarketData(self.theGDAXControler, self.theUIGraph)
         self.theTransactionManager = TransactionManager(self.theGDAXControler, self.theUIGraph, self.theMarketData, self.theSettings)
-        self.theUIGraph.UIGR_SetTransactionManager(self.theTransactionManager)
+        # self.theUIGraph.UIGR_SetTransactionManager(self.theTransactionManager)
         self.theTrader = Trader(self.theTransactionManager, self.theMarketData, self.theUIGraph, self.theSettings)
         self.theInputDataHandler = InputDataHandler(self.theGDAXControler, self.theUIGraph, self.theMarketData, self.theTrader, self.theSettings)
         self.theApp = AppState(self.theUIGraph, self.theTrader, self.theGDAXControler, self.theInputDataHandler, self.theMarketData, self.theSettings)
