@@ -64,8 +64,8 @@ class GDAXControler():
         self.IsConnectedAndOperational = "False"
 
         # MURPHY: TODO: key/secret?
-        self.clientPublic = Client(base_url="https://testnet.binance.vision")
-
+        # self.clientPublic = Client(base_url="https://testnet.binance.vision")
+        self.clientPublic = Client()
         # Start background thread
         threadRefreshPrice = threading.Timer(1, self.updateRealTimePriceInBackground)
         threadRefreshPrice.start()
