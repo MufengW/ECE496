@@ -83,7 +83,7 @@ class MarketData():
             self.maxMACDValuePricePercentageForNormalization = 0.012
 
         if (self.totalNbIterations > 1):
-            self.maxMACDForNormalization = self.dataRefCryptoPriceInEUR[1] * self.maxMACDValuePricePercentageForNormalization
+            self.maxMACDForNormalization = float(self.dataRefCryptoPriceInEUR[1]) * self.maxMACDValuePricePercentageForNormalization
         else:
             self.maxMACDForNormalization = 10000 * self.maxMACDValuePricePercentageForNormalization
 
@@ -107,7 +107,7 @@ class MarketData():
 
     # Used in SImulation mode in order to get the price at which we buy or sell
     def MRKT_GetLastRefPrice(self):
-        return self.dataRefCryptoPriceInEUR[-1]
+        return float(self.dataRefCryptoPriceInEUR[-1])
 
     def MRKT_GetLastFastSmoothedPrice(self):
         return self.dataRefSmoothAverageFast[-1]
@@ -157,26 +157,27 @@ class MarketData():
 
     def updateMarketPriceAndTime(self, newSampleTime, newSamplePrice):
 
-        self.dataRefCryptoPriceInEUR.append(newSamplePrice)
+        self.dataRefCryptoPriceInEUR.append(float(newSamplePrice))
         self.dataRefTime.append(newSampleTime)
 
         # Update price on the UI
         if (self.totalNbIterations % self.UIGraphSubScheduling == 0):
-            self.theUIGraph.UIGR_updatePriceLbl(round(self.dataRefCryptoPriceInEUR[-1], 5))
+            # print("Thomas", self.dataRefCryptoPriceInEUR)
+            self.theUIGraph.UIGR_updatePriceLbl(round(float(self.dataRefCryptoPriceInEUR[-1]), 5))
 
     def updateFastSmoothAverage(self):
         if (self.totalNbIterations > self.NB_POINTS_FOR_FAST_SMOOTH_FILTER + 1):
             if (self.totalNbIterations % self.UIGraphSubScheduling == 0):
                 self.dataRefSmoothAverageFast.append((signal.lfilter(self.bFast, self.aFast, self.dataRefCryptoPriceInEUR[-self.NB_POINTS_FOR_FAST_SMOOTH_FILTER:]))[-1])
         else:
-            self.dataRefSmoothAverageFast.append(self.dataRefCryptoPriceInEUR[-1]*0.999)
+            self.dataRefSmoothAverageFast.append(float(self.dataRefCryptoPriceInEUR[-1])*0.999)
 
     def updateSlowSmoothAverage(self):
         if (self.totalNbIterations > self.NB_POINTS_FOR_SLOW_SMOOTH_FILTER + 1):
             if (self.totalNbIterations % self.UIGraphSubScheduling == 0):
                 self.dataRefSmoothAverageSlow.append((signal.lfilter(self.bSlow, self.aSlow, self.dataRefCryptoPriceInEUR[-self.NB_POINTS_FOR_SLOW_SMOOTH_FILTER:]))[-1])
         else:
-            self.dataRefSmoothAverageSlow.append(self.dataRefCryptoPriceInEUR[-1]*0.999)
+            self.dataRefSmoothAverageSlow.append(float(self.dataRefCryptoPriceInEUR[-1])*0.999)
 
     def updateRiskLine(self):
         if (self.totalNbIterations > self.NB_POINTS_FOR_RISK_LINE_COMPUTATION + 1):

@@ -101,28 +101,27 @@ class InputDataHandler(object):
             nbOfSamplesToDisplayOnGraph = theConfig.CONFIG_NB_POINTS_LIVE_TRADING_GRAPH
             print("INDH - Choosen to display %s points on graph" % nbOfSamplesToDisplayOnGraph)
             self.theUIGraph.UIGR_ResetAllGraphData(False, -1, int(nbOfSamplesToDisplayOnGraph))
-            self.retrievedTime = 0
-            self.retrievedPrice = 0
-            #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+            # self.retrievedTime = 0
+            # self.retrievedPrice = 0
+            [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
             currentTimeStamp = self.retrievedTime
-            endOfList = False
+            # endOfList = False
             timeStep = theConfig.CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS / 1000
 
             while ((endOfList == False) and (self.abortOperations == False)):
-                #print("currentTimestamp %s" % currentTimeStamp)
+                # print("currentTimestamp %s" % currentTimeStamp)
                 if (currentTimeStamp >= self.retrievedTime):
                     # Update market data with this original (non artificial) sample
-                    self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
+                    # self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
                     currentTimeStamp = self.retrievedTime
                     # Get next sample in memory
-                    self.retrievedTime = 0
-                    self.retrievedPrice = 0
-                    #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+                    # print("End of list 1", endOfList)
+                    [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+                    # print("End of list 2", endOfList)
                 else:
                     # Interpolate with previous sample value
                     currentTimeStamp = currentTimeStamp + timeStep
-                    self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
-
+                    # self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
             self.theUIGraph.UIGR_updateGraphs()
             self.theUIGraph.UIGR_performManualYRangeRefresh()
 
@@ -167,11 +166,11 @@ class InputDataHandler(object):
         batchSamplesSizeForSpeed = self.theSettings.SETT_GetSettings()["simulationSpeed"] + 2
         batchSamplesInitGraph = theConfig.CONFIG_NB_POINTS_INIT_SIMU_GRAPH * self.getCurrentSubSchedulingFactor()
         nbHistoricSamplesRetrieved = 0
-        self.retrievedTime = 0
-        self.retrievedPrice = 0
-        #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+        # self.retrievedTime = 0
+        # self.retrievedPrice = 0
+        [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
         currentTimeStamp = self.retrievedTime
-        endOfList = False
+        # endOfList = False
         timeStep = theConfig.CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS / 1000
 
         print("INDH - Starting Simulation Thread. Batch size for simulation speed is %s" % batchSamplesSizeForSpeed)
@@ -180,20 +179,20 @@ class InputDataHandler(object):
             #print("currentTimestamp %s" % currentTimeStamp)
             if (currentTimeStamp >= self.retrievedTime):
                 # Update market data with this original (non artificial) sample
-                self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
+                # self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
                 currentTimeStamp = self.retrievedTime
                 # Get next sample in memory
-                self.retrievedTime = 0
-                self.retrievedPrice = 0
-                #[self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
+                # self.retrievedTime = 0
+                # self.retrievedPrice = 0
+                [self.retrievedTime, self.retrievedPrice, endOfList] = self.theGDAXControler.GDAX_GetNextHistoricDataSample()
             else:
                 # Interpolate with previous sample value
                 currentTimeStamp = currentTimeStamp + timeStep
-                self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
+                # self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
 
-            #start = time.clock()
-            #self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
-            #print("MRKT_updateMarketData : %s" % (time.clock() - start))
+            # start = time.clock()
+            # self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
+            # print("MRKT_updateMarketData : %s" % (time.clock() - start))
 
             nbHistoricSamplesRetrieved = nbHistoricSamplesRetrieved + 1
             self.theTrader.TRAD_ProcessDecision()

@@ -2,3 +2,4 @@
 *out
 *.pyc
 astibot.settings
+.idea/

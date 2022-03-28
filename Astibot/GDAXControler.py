@@ -1,16 +1,11 @@
 import logging
-
-from binance import ThreadedWebsocketManager
 from binance.spot import Spot as Client
-from binance.lib.utils import config_logging
+from binance.websocket.spot.websocket_client import SpotWebsocketClient as WBClient
 from binance.error import ClientError, ServerError
 
-import cbpro
-from cbpro.public_client import PublicClient
 import time
 import threading
 from json import dumps, loads
-from cbpro.websocket_client import WebsocketClient
 import TradingBotConfig as theConfig
 from datetime import datetime
 import pytz
@@ -34,9 +29,6 @@ class GDAXControler():
     def __init__(self, UIGraph, Settings):
 
         super(GDAXControler, self).__init__()
-
-        self.Account1 = None
-        self.Account2 = None
         self.theUIGraph = UIGraph
         # Application settings data instance
         self.theSettings = Settings
@@ -46,6 +38,7 @@ class GDAXControler():
         self.requestAccountsBalanceUpdate = True
         self.backgroundOperationsCounter = 0
 
+        self.account = None
         self.tickBestBidPrice = 0
         self.tickBestAskPrice = 0
         self.liveBestBidPrice = 0
@@ -60,8 +53,9 @@ class GDAXControler():
         self.productStr = self.theSettings.SETT_GetSettings()["strTradingPair"]
         self.productFiatStr = self.theSettings.SETT_GetSettings()["strFiatType"]
         self.productCryptoStr = self.theSettings.SETT_GetSettings()["strCryptoType"]
-        self.bAccount1Exists = False
-        self.bAccount2Exists = False
+        self.accountExist = False
+        self.CryptoAccount = {}
+        self.FiatAccount = {}
 
         self.HistoricData = []
         self.HistoricDataReadIndex = 0
@@ -106,17 +100,14 @@ class GDAXControler():
     def startWebSocketFeed(self):
         key = "5St8GRwYWckPOeWpp88FZQx87A5KRR6A9dDnV6BQVIOBSy2XGk2xRGpOPei2CgWk"
         secret = "teQDw85j5jDk8EokZDd4aaBDfHP0p9HCOqpYVzb2MyzU3EDLGIBmjKcOUUTFmdYZ"
-        twm = ThreadedWebsocketManager(api_key=key, api_secret=secret)
-        # start is required to initialise its internal loop
-        twm.start()
+        twm = Client(key, secret, base_url="https://testnet.binance.vision")
 
     def PerformConnectionInitializationAttempt(self):
         print("GDAX - Performing connection initialization attempt...")
 
         bGDAXConnectionIsOK = True
         bInternetLinkIsOK = True
-        self.bAccount1Exists = False
-        self.bAccount2Exists = False
+        self.accountExist = False
 
         # Real Market keys =========================================
         self.api_key = self.theSettings.SETT_GetSettings()["strAPIKey"]
@@ -133,22 +124,14 @@ class GDAXControler():
             print("GDAX - Server connection error")
             print("GDAX - Exception : " + str(e))
 
-        #            bGDAXConnectionIsOK = False
-        #            bInternetLinkIsOK = False
-        #            print("GDAX - Authentication error")
-        #            print("GDAX - Exception : " + str(e))
-
         # Refresh account in order to see if auth was successful
         try:
-            self.accounts = self.clientAuth.account()
+            self.account = self.clientAuth.account()
             time.sleep(0.05)
-            print("GDAX - Init, Accounts retrieving: %s" % self.accounts)
+            print("GDAX - Init, Accounts retrieving: %s" % self.account)
+            self.accountExist = True
+            self.refreshAccounts()
             # MURPHY TODO: check retrieving account for real accounts
-        #            if ('id' in self.accounts[0]):
-        #                print("GDAX - Successful accounts retrieving")
-        #            else:
-        #                print("GDAX - Accounts retrieving not successful: no relevant data")
-
         except ClientError as e:
             print("GDAX - Client connection error")
             print("GDAX - Exception : " + str(e))
@@ -160,61 +143,11 @@ class GDAXControler():
             self.theUIGraph.UIGR_updateInfoText(
                 "Connection to Coinbase Pro server failed. GDAX - Exception : " + str(e), True)
 
-        # If all steps before were successful, GDAX connection is working
-        if (bInternetLinkIsOK == True):
-            if (bGDAXConnectionIsOK == True):
-                # Check existence of right accounts
-                for balance in self.accounts['balances']:
-                    # MURPHY TODO: pass in variables
-                    if balance['asset'] == 'BTC':
-                        self.Account1 = balance
-                        self.bAccount1Exists = True
-                        # MURPHY TODO: pass in variables
-                        print("GDAX - BTC account has been found")
-                    if balance['asset'] == 'USDT':
-                        self.Account2 = balance
-                        self.bAccount2Exists = True
-                        print("GDAX - USDT account has been found")
-
-                # If both accounts corresponding to the trading pair exist, init is successful
-                if (self.bAccount1Exists is True) and (self.bAccount2Exists is True):
-                    print("GDAX - Initialization of GDAX connection successful")
-
-                    # Start Websocket feed
-                    self.startWebSocketFeed()
-
-                    self.IsConnectedAndOperational = "True"
-                    self.theUIGraph.UIGR_updateInfoText("Authentication successful", False)
-                else:
-                    print("GDAX - Accounts corresponding to the trading pairs do not exist")
-                    self.IsConnectedAndOperational = "False"
-                    # Display error message
-                    if self.bAccount2Exists is False:
-                        self.theUIGraph.UIGR_updateInfoText(
-                            "Error: No %s account found on your Coinbase Pro profile. Make sure you chose a trading "
-                            "pair that is available in your country" % self.productFiatStr,
-                            True)
-                    else:
-                        self.theUIGraph.UIGR_updateInfoText(
-                            "Error: No %s account found on your Coinbase Pro profile. Make sure you chose a trading "
-                            "pair that you are authorized to trade" % self.productCryptoStr,
-                            True)
-
-                self.refreshAccounts()
-            else:
-                print("GDAX - Initialization of GDAX connection failed")
-                self.IsConnectedAndOperational = "False"
-                # If first connection, display explanation message
-                if self.theSettings.SETT_IsSettingsFilePresent() is False:
-                    # Else, display error message
-                    self.theUIGraph.UIGR_updateInfoText(
-                        "Welcome on Astibot! Your Coinbase Pro API keys are required for trading. Click here to set "
-                        "it up",
-                        False)
-                else:
-                    # Else, display error message
-                    self.theUIGraph.UIGR_updateInfoText("Coinbase Pro Authentication error: check your API credentials",
-                                                        True)
+        # If both accounts corresponding to the trading pair exist, init is successful
+        if (self.accountExist is True):
+            print("GDAX - Initialization of GDAX connection successful")
+            self.IsConnectedAndOperational = "True"
+            self.theUIGraph.UIGR_updateInfoText("Authentication successful", False)
         else:
             print("GDAX - Initialization of GDAX connection failed")
             self.IsConnectedAndOperational = "False"
@@ -232,12 +165,13 @@ class GDAXControler():
     # Returns the Available fiat balance (ie. money that can be used and that is not held for any pending order)
     def GDAX_GetFiatAccountBalance(self):
         # print("GDAX - GetFiatAccountBalance")
-        if (self.bAccount2Exists == True):
-            # print("GDAX - Exists")
+        if (self.accountExist == True):
             try:
-                balanceToReturn = (round(float(self.FiatAccount['available']), 8))
+                print(self.FiatAccount)
+                balanceToReturn = (round(float(self.FiatAccount['free']), 8))
                 return balanceToReturn
             except BaseException as e:
+                print("error", e)
                 print("GDAX - Error retrieving fiat account balance. Inconsistent data in fiat account object.")
                 return 0
         else:
@@ -246,10 +180,10 @@ class GDAXControler():
 
     def GDAX_GetFiatAccountBalanceHeld(self):
         # print("GDAX - GetFiatAccountBalance")
-        if (self.bAccount2Exists == True):
+        if (self.accountExist == True):
             # print("GDAX - Exists")
             try:
-                balanceToReturn = (round(float(self.FiatAccount['hold']), 8))
+                balanceToReturn = (round(float(self.FiatAccount['locked']), 8))
                 return balanceToReturn
             except BaseException as e:
                 print("GDAX - Error retrieving fiat hold account balance. Inconsistent data in fiat account object.")
@@ -260,9 +194,9 @@ class GDAXControler():
 
     # Returns the Available crypto balance (ie. money that can be used and that is not held for any pending order)
     def GDAX_GetCryptoAccountBalance(self):
-        if (self.bAccount1Exists == True):
+        if (self.accountExist == True):
             try:
-                balanceToReturn = (round(float(self.CryptoAccount['available']), 8))
+                balanceToReturn = (round(float(self.CryptoAccount['free']), 8))
                 return balanceToReturn
             except BaseException as e:
                 print("GDAX - Error retrieving crypto account balance. Inconsistent data in crypto account object.")
@@ -272,9 +206,9 @@ class GDAXControler():
             return 0
 
     def GDAX_GetCryptoAccountBalanceHeld(self):
-        if (self.bAccount1Exists == True):
+        if (self.accountExist == True):
             try:
-                balanceToReturn = (round(float(self.CryptoAccount['hold']), 8))
+                balanceToReturn = (round(float(self.CryptoAccount['locked']), 8))
                 print("GDAX - Returned held balance %s for %s" % (balanceToReturn, self.productCryptoStr))
                 return balanceToReturn
             except BaseException as e:
@@ -289,9 +223,9 @@ class GDAXControler():
     # Useful for payment system
     def GDAX_GetBTCAccountBalance(self):
         try:
-            for currentAccount in self.accounts:
-                if (currentAccount['currency'] == 'BTC'):
-                    balanceToReturn = round(float(currentAccount['available']), 7)
+            for currentAccount in self.account['balances']:
+                if (currentAccount['asset'] == 'BTC'):
+                    balanceToReturn = round(float(currentAccount['free']), 7)
                     return balanceToReturn
             return 0
         except BaseException as e:
@@ -300,28 +234,23 @@ class GDAXControler():
 
     def refreshAccounts(self):
         try:
-            self.accounts = self.clientAuth.get_accounts()
+            # self.account is a list of dictionary of assets and balance
+            self.account = self.clientAuth.account()
             # Refresh individual accounts
-            for currentAccount in self.accounts:
-                if currentAccount['currency'] == self.productCryptoStr:
+
+            for currentAccount in self.account['balances']:
+                if currentAccount['asset'] == self.productCryptoStr:
                     self.CryptoAccount = currentAccount
-                    # print("CRYPTO ACCOUNT")
-                    # print(self.CryptoAccount)
-                    # print(self.CryptoAccount['balance'])
-                    # print(self.CryptoAccount['available'])
-                if currentAccount['currency'] == self.productFiatStr:
+                if currentAccount['asset'] == self.productFiatStr:
                     self.FiatAccount = currentAccount
-                    # print("FIAT ACCOUNT")
-                    # print(self.FiatAccount)
-                    # print(self.FiatAccount['balance'])
-                    # print(self.FiatAccount['available'])
 
             if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
                 self.theUIGraph.UIGR_updateAccountsBalance(self.GDAX_GetFiatAccountBalance(),
                                                            self.GDAX_GetCryptoAccountBalance())
             else:
                 pass  # In simulated market, accounts are refreshed by the Simulation manager
-        except:
+        except BaseException as e:
+            print(e)
             print("GDAX - Error in refreshAccounts")
 
     def GDAX_RefreshAccountsDisplayOnly(self):
@@ -440,18 +369,16 @@ class GDAXControler():
             # Order book level 1 : Just the highest bid and lowest sell proposal
             try:
                 result = ""
-                result = self.clientPublic.get_product_order_book(self.productStr, 1)
-                self.tickBestBidPrice = float(result['bids'][0][0])
-                self.tickBestAskPrice = float(result['asks'][0][0])
+                result = self.clientPublic.book_ticker(self.productStr)
+                self.tickBestBidPrice = float(result['bidPrice'])
+                self.tickBestAskPrice = float(result['askPrice'])
                 self.midMarketPrice = (self.tickBestBidPrice + self.tickBestAskPrice) / 2
 
                 # DEBUG
-                #                 print("GDAX - Highest Bid: %s" % self.tickBestBidPrice)
-                #                 print("GDAX - Lowest Ask: %s" % self.tickBestAskPrice)
+                print("GDAX - Highest Bid: %s" % self.tickBestBidPrice)
+                print("GDAX - Lowest Ask: %s" % self.tickBestAskPrice)
 
                 self.PriceSpread = self.tickBestBidPrice - self.tickBestAskPrice
-                # print("GDAX - MiddleMarket price: %s" % self.tickBestBidPrice)
-
                 self.theUIGraph.UIGR_updateConnectionText("Price data received from Coinbase Pro server")
 
                 # Refresh account balances
@@ -811,7 +738,7 @@ class GDAXControler():
                 print("GDAX - Using private client to retrieve historic prices")
             else:
                 # MURPHY TODO: hardcode productstr
-                HistoricDataSlice = self.clientPublic.klines("BTCUSDT",interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
+                HistoricDataSlice = self.clientPublic.klines("BTCUSDT", interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
                 # Only sleep if reloop condition is met
                 if (stopSlice < stopTimestamp):
                     time.sleep(0.250)
@@ -820,7 +747,7 @@ class GDAXControler():
             print("GDAX - Size of HistoricDataSlice: %s" % len(HistoricDataSlice))
 
             try:  # parfois le reversed crash. Pas de data dans la slice ?
-                for slice in reversed(HistoricDataSlice):
+                for slice in HistoricDataSlice:
                     self.HistoricDataRaw.append(slice)
             except BaseException as e:
                 print("GDAX - Exception when reversing historic data slice")
@@ -865,9 +792,7 @@ class GDAXControler():
         # print("GDAX - Full Historic data list length is %s" % len(self.HistoricData))
 
         endOfList = False
-        self.HistoricDataReadIndex = self.HistoricDataReadIndex + 1
-        if (self.HistoricDataReadIndex + 1 >= len(
-                self.HistoricData)):  # We've read as many samples as they are in the list
+        if (self.HistoricDataReadIndex + 1 >= len(self.HistoricData)):  # We've read as many samples as they are in the list
             endOfList = True
             print("GDAX - Historic Data - End of list reached")
         #         print ("Time retrieved %s" % self.HistoricData[self.HistoricDataReadIndex][0])
@@ -875,7 +800,11 @@ class GDAXControler():
         #         print ("Len list %s, Index : %s" % (len(self.HistoricData), self.HistoricDataReadIndex))
 
         # Fifth element (index 4) is the closure price
-        return [self.HistoricData[self.HistoricDataReadIndex][0], self.HistoricData[self.HistoricDataReadIndex][4],
+        # print("Historic Data", self.HistoricData)
+        # print("2", self.HistoricDataReadIndex)
+        # print("end of list", endOfList)
+        self.HistoricDataReadIndex = self.HistoricDataReadIndex + 1
+        return [self.HistoricData[self.HistoricDataReadIndex - 1][0], self.HistoricData[self.HistoricDataReadIndex - 1][4],
                 endOfList]
 
     def GDAX_SetReadIndexFromPos(self, positionTimeStamp):
