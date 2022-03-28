@@ -13,7 +13,7 @@ from tzlocal import get_localzone
 from requests.exceptions import ConnectionError
 from GDAXCurrencies import GDAXCurrencies
 import math  # truncate
-
+import numpy as np
 
 # This module is actually a Coinbae Pro handler
 # TODO : update all GDAX references to CbPro
@@ -731,14 +731,20 @@ class GDAXControler():
             if (self.IsConnectedAndOperational == "True"):
                 print("GDAX - Using public client to retrieve historic prices")
                 # MURPHY TODO: hardcode productstr
-                HistoricDataSlice = self.clientAuth.klines("BTCUSDT",interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
+                # HistoricDataSlice = self.clientPublic.klines("BTCUSDT",interval="1h",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
+                HistoricDataSlice = self.clientPublic.klines("BTCUSDT",interval="1m",endTime=round(stopTimestamp * 1000))
+
                 # Only sleep if reloop condition is met
                 if (stopSlice < stopTimestamp):
                     time.sleep(0.350)
                 print("GDAX - Using private client to retrieve historic prices")
             else:
                 # MURPHY TODO: hardcode productstr
-                HistoricDataSlice = self.clientPublic.klines("BTCUSDT", interval="1m",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000))
+                # HistoricDataSlice = self.clientPublic.klines("BTCUSDT", interval="1s",startTime=round(startTimestamp * 1000),endTime=round(stopTimestamp * 1000), limit = 600)
+
+                HistoricDataSlice = self.clientPublic.klines("BTCUSDT", interval="1m",
+                                                             endTime=round(stopTimestamp * 1000), limit=600)
+
                 # Only sleep if reloop condition is met
                 if (stopSlice < stopTimestamp):
                     time.sleep(0.250)
@@ -748,7 +754,17 @@ class GDAXControler():
 
             try:  # parfois le reversed crash. Pas de data dans la slice ?
                 for slice in HistoricDataSlice:
-                    self.HistoricDataRaw.append(slice)
+                    # slice[0] = slice[0] / 1000
+                    # slice - [OpenTime, open, high, low, close, volume, close time, QuoteAssetVolume, numOfTrade, TakerBuyBaseAssetVolume, TakerBuyQuoteAssetVolume, Ignore]
+                    # new slice [OpenTime, low, high, open, close, volume, close time, QuoteAssetVolume, numOfTrade, TakerBuyBaseAssetVolume, TakerBuyQuoteAssetVolume, Ignore]
+                    new_slice = np.asarray(slice).astype(np.float64)
+                    new_slice[0] = new_slice[0] / 1000
+                    open = new_slice[1]
+                    low = new_slice[3]
+                    new_slice[1] = low
+                    new_slice[3] = open
+
+                    self.HistoricDataRaw.append(new_slice)
             except BaseException as e:
                 print("GDAX - Exception when reversing historic data slice")
             print("Historic : %s " % HistoricDataSlice)
@@ -792,6 +808,8 @@ class GDAXControler():
         # print("GDAX - Full Historic data list length is %s" % len(self.HistoricData))
 
         endOfList = False
+        self.HistoricDataReadIndex = self.HistoricDataReadIndex + 1
+        print("=================",self.HistoricDataReadIndex, len(self.HistoricData))
         if (self.HistoricDataReadIndex + 1 >= len(self.HistoricData)):  # We've read as many samples as they are in the list
             endOfList = True
             print("GDAX - Historic Data - End of list reached")
@@ -803,8 +821,7 @@ class GDAXControler():
         # print("Historic Data", self.HistoricData)
         # print("2", self.HistoricDataReadIndex)
         # print("end of list", endOfList)
-        self.HistoricDataReadIndex = self.HistoricDataReadIndex + 1
-        return [self.HistoricData[self.HistoricDataReadIndex - 1][0], self.HistoricData[self.HistoricDataReadIndex - 1][4],
+        return [self.HistoricData[self.HistoricDataReadIndex][0], self.HistoricData[self.HistoricDataReadIndex][4],
                 endOfList]
 
     def GDAX_SetReadIndexFromPos(self, positionTimeStamp):

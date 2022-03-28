@@ -109,10 +109,11 @@ class InputDataHandler(object):
             timeStep = theConfig.CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS / 1000
 
             while ((endOfList == False) and (self.abortOperations == False)):
-                # print("currentTimestamp %s" % currentTimeStamp)
+                print("currentTimestamp \t%s" % currentTimeStamp)
+                print("self.retrievedTime \t%s\n" % self.retrievedTime)
                 if (currentTimeStamp >= self.retrievedTime):
                     # Update market data with this original (non artificial) sample
-                    # self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
+                    self.theMarketData.MRKT_updateMarketData(self.retrievedTime, self.retrievedPrice)
                     currentTimeStamp = self.retrievedTime
                     # Get next sample in memory
                     # print("End of list 1", endOfList)
@@ -121,7 +122,8 @@ class InputDataHandler(object):
                 else:
                     # Interpolate with previous sample value
                     currentTimeStamp = currentTimeStamp + timeStep
-                    # self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
+                    self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
+            # self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
             self.theUIGraph.UIGR_updateGraphs()
             self.theUIGraph.UIGR_performManualYRangeRefresh()
 
