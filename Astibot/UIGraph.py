@@ -68,24 +68,24 @@ class UIGraph():
     STR_LABEL_CURRENT_STATE = 'Current State : '
     STR_LABEL_TOTAL_GAINS = 'Total profit : '
 
-    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : #203044;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: bold 13px;}"
-    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #24b62e; font: bold 14px;}"
-    STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #203044; color : #FF2F2F; font: bold 14px;}"
-    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : #203044; color : #ff2e2e; font: bold 14px;}"
-    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 14px;}"
-    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : #203044; color : #FF2F2F; font: 14px;}"
-    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #29CF36; font: bold 14px; text-decoration: underline;}"
-    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : #203044; color : #FF8000; font: bold 14px; text-decoration: underline;}"
-    STR_QLABEL_TOOLTIP_STYLESHEET = "QLabel { background-color : #151f2b; color : white; font: 10px;}"
-    STR_QLABEL_CONNECTION_STATUS_STYLESHEET = "QLabel { background-color : #151f2b; color : green; font: 10px;}"
-    STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : #151f2b; color : #334c6b; font: 11px;}"
-    STR_QLABEL_LIVE_DATA_STYLESHEET = "QLabel { background-color : #151f2b; color : #334c6b; font: 10px;}"
-    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : #203044; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: #203044; border: 1px solid white;}"
-    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : #203044; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid #203044;} QRadioButton::indicator:unchecked {background-color: #203044; border: 1px solid #203044;}"
+    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : black;}"
+    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : black;}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : black; color : white; font: bold 20px;}"
+    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : black; color : #24b62e; font: bold 14px;}"
+    STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : black; color : #FF2F2F; font: bold 14px;}"
+    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : black; color : #ff2e2e; font: bold 14px;}"
+    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : black; color : white; font: 14px;}"
+    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : black; color : #FF2F2F; font: 14px;}"
+    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : black; color : #29CF36; font: bold 14px; text-decoration: underline;}"
+    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : black; color : #FF8000; font: bold 14px; text-decoration: underline;}"
+    STR_QLABEL_TOOLTIP_STYLESHEET = "QLabel { background-color : black; color : white; font: 10px;}"
+    STR_QLABEL_CONNECTION_STATUS_STYLESHEET = "QLabel { background-color : black; color : green; font: 10px;}"
+    STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : black; color : white; font: 20px;}"
+    STR_QLABEL_LIVE_DATA_STYLESHEET = "QLabel { background-color : black; color : #334c6b; font: 10px;}"
+    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : black; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: black; border: 1px solid white;}"
+    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : black; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid black;} QRadioButton::indicator:unchecked {background-color: black; border: 1px solid black;}"
     STR_QBUTTON_START_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
-    STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: #21435e; border-width: 1.5px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #096fbf } QPushButton:hover { background-color: #1D3850 }"
+    STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: black; border-width: 1.5px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #B0B0B0 } QPushButton:hover { background-color: #807E80 }"
     STR_QBUTTON_SETTINGS_DISABLED_STYLESHEET = "QPushButton {background-color: #183145; border-width: 1.5px; border-radius: 10px; border-color: #838fa7; font: bold 15px; color:#838fa7}"
     STR_QBUTTON_START_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white}"
     STR_QBUTTON_LOADING_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white}"
@@ -93,7 +93,7 @@ class UIGraph():
     STR_QBUTTON_PAUSE_STYLESHEET = "QPushButton {background-color: #ddbd00; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #b3af00 } QPushButton:hover { background-color: #b3af00 }"
     STR_QBUTTON_PAUSE_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white}"
     STR_QFRAME_SEPARATOR_STYLESHEET = "background-color: rgb(20, 41, 58);"
-    STR_QSLIDER_STYLESHEET = "QSlider::handle:hover {background-color: #C6D0FF;}"
+    STR_QSLIDER_STYLESHEET = "QSlider::handle:hover {background-color: #C6D0FF;} QSlider::handle:horizontal {background-color: #61368E;}"
 
     def __init__(self, QtApplication, Settings):
         print("UIGR - UIGraph Constructor")
@@ -103,21 +103,23 @@ class UIGraph():
         self.firstGraphDataInitIsDone = False
 
         # Settings-dependant variables init
-        self.STR_LABEL_FIAT_BALANCE = str(self.theSettings.SETT_GetSettings()["strFiatType"]) + " Account Balance : "
-        self.STR_LABEL_CRYPTO_BALANCE = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + " Account Balance : "
-
+        # self.STR_LABEL_FIAT_BALANCE = str(self.theSettings.SETT_GetSettings()["strFiatType"]) + " Account Balance : "
+        # self.STR_LABEL_CRYPTO_BALANCE = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + " Account Balance : "
+        self.STR_LABEL_FIAT_BALANCE = ""
+        self.STR_LABEL_CRYPTO_BALANCE = ""
+    
         # Window initialization
         self.theQtApp = QtApplication
         self.mainWidget = QtGui.QWidget()
-        self.rootGrid = QtGui.QGridLayout()
-        self.mainWidget.setWindowTitle('Astibot')
+        self.rootGrid = QtGui.QGridLayout() # for setting + info layout
+        self.mainWidget.setWindowTitle('Astibot')        
         self.mainWidget.resize(self.MAIN_WINDOW_WIDTH_IN_PX, self.MAIN_WINDOW_HEIGHT_IN_PX)
-        self.mainWidget.setWindowIcon(QtGui.QIcon("AstibotIcon.png"))
-
+        self.mainWidget.setWindowIcon(QtGui.QIcon("'logos/' + AstibotIcon.png"))
+        
         # Customize main widget (window)
-        self.mainWidget.setStyleSheet("background-color:#203044;")
-        self.mainWidget.setAutoFillBackground(True);
-
+        self.mainWidget.setStyleSheet("background-color:black;")
+        # self.mainWidget.setAutoFillBackground(True) # TODO: not sure what it does
+               
         # By default consider the data series will start now. This can be overridden
         self.MostRecentPointTimestamp = time.time()
 
@@ -297,7 +299,7 @@ class UIGraph():
             # Refresh risk line plot data
             self.graphDataBitcoinRiskLine.fill(self.currentRiskLineRawAvgValue * theConfig.CONFIG_RiskLinePercentsAboveThresholdToBuy)
             # Update graph
-            self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
+            # self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
 
             if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
                 # Force UI refresh. After a long running time, UI refresh is not automatic sometimes
@@ -327,29 +329,30 @@ class UIGraph():
         self.rootBlockTop.setStyleSheet(self.STR_BORDER_BLOCK_STYLESHEET)
 
         # Top ====================================
-        self.buttonSettings = ButtonHoverSettings(self.lblToolTip, self.STR_BUTTON_SETTINGS)
-        self.buttonSettings.setVisible(True)
-        self.buttonSettings.clicked.connect(self.EventSettingsButtonClick)
-        self.buttonSettings.setFixedWidth(110)
-        self.buttonSettings.setFixedHeight(28)
-        self.buttonSettings.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
-        self.buttonSettings.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        # self.buttonDonation = ButtonHoverDonation(self.lblToolTip, self.STR_BUTTON_Donation)
-        # self.buttonDonation.setVisible(True)
-        # self.buttonDonation.clicked.connect(self.EventDonationButtonClick)
-        # self.buttonDonation.setFixedWidth(110)
-        # self.buttonDonation.setFixedHeight(28)
-        # self.buttonDonation.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
-        # self.buttonDonation.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.buttonInfo = ButtonHoverInfo(self.lblToolTip, self.STR_BUTTON_INFO)
-        self.buttonInfo.setVisible(True)
-        self.buttonInfo.clicked.connect(self.EventInfoButtonClick)
-        self.buttonInfo.setFixedWidth(110)
-        self.buttonInfo.setFixedHeight(28)
-        self.buttonInfo.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
-        self.buttonInfo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.buttonSettings = ButtonHoverSettings(self.lblToolTip, self.STR_BUTTON_SETTINGS)
+        # self.buttonSettings.setVisible(True)
+        # self.buttonSettings.clicked.connect(self.EventSettingsButtonClick)
+        # self.buttonSettings.setFixedWidth(110)
+        # self.buttonSettings.setFixedHeight(28)
+        # self.buttonSettings.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        # self.buttonSettings.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # # self.buttonDonation = ButtonHoverDonation(self.lblToolTip, self.STR_BUTTON_Donation)
+        # # self.buttonDonation.setVisible(True)
+        # # self.buttonDonation.clicked.connect(self.EventDonationButtonClick)
+        # # self.buttonDonation.setFixedWidth(110)
+        # # self.buttonDonation.setFixedHeight(28)
+        # # self.buttonDonation.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        # # self.buttonDonation.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.buttonInfo = ButtonHoverInfo(self.lblToolTip, self.STR_BUTTON_INFO)
+        # self.buttonInfo.setVisible(True)
+        # self.buttonInfo.clicked.connect(self.EventInfoButtonClick)
+        # self.buttonInfo.setFixedWidth(110)
+        # self.buttonInfo.setFixedHeight(28)
+        # self.buttonInfo.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        # self.buttonInfo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         # self.lblVersion = QtGui.QLabel("Version " + str(theConfig.CONFIG_VERSION))
+        # self.lblVersion = QtGui.QLabel("Cryptocurency Quantitative Trading System")
         # self.lblVersion.setStyleSheet(self.STR_QLABEL_VERSION_STYLESHEET);
         # self.lblVersion.setAlignment(QtCore.Qt.AlignLeft)
         # self.lblVersion.setFixedHeight(28)
@@ -359,44 +362,68 @@ class UIGraph():
         self.rootTopBlock.setFixedHeight(60)
         self.rootHboxTop = QtGui.QHBoxLayout()
         self.rootHboxTop.setContentsMargins(40, 0, 40, 0) # left, top, right, bottom
-        self.lblLogo = QtGui.QLabel("lblLogo")
-        pixmap = QtGui.QPixmap('AstibotLogo.png')
-        self.lblLogo.setPixmap(pixmap)
-        self.rootHboxTop.addWidget(self.lblLogo)
+        # self.lblLogo = QtGui.QLabel("lblLogo")
+        # pixmap = QtGui.QPixmap('AstibotLogo.png')
+        # self.lblLogo.setPixmap(pixmap)
+        # self.rootHboxTop.addWidget(self.lblLogo)
         # self.rootHboxTop.addWidget(self.lblVersion)
-        self.rootHboxTop.addWidget(self.buttonSettings, QtCore.Qt.AlignRight)
-        # self.rootHboxTop.addWidget(self.buttonDonation, QtCore.Qt.AlignRight)
-        self.rootHboxTop.addWidget(self.buttonInfo, QtCore.Qt.AlignRight)
+        # self.rootHboxTop.addWidget(self.buttonSettings, QtCore.Qt.AlignRight)
+        # # self.rootHboxTop.addWidget(self.buttonDonation, QtCore.Qt.AlignRight)
+        # self.rootHboxTop.addWidget(self.buttonInfo, QtCore.Qt.AlignRight)
         self.rootTopBlock.setLayout(self.rootHboxTop)
-
-        self.mainGridLayout.addWidget(self.rootTopBlock, 0, 0, 1, 4)
+        
+        # self.mainGridLayout.addWidget(self.rootTopBlock, 0, 0, 1, 4)
 
         # Bottom ==================================
         self.rootBottomBlock = QtGui.QWidget()
         self.rootBottomBlock.setStyleSheet(self.STR_BORDER_BLOCK_STYLESHEET)
-        self.rootBottomBlock.setFixedHeight(40)
+        self.rootBottomBlock.setFixedHeight(80)
 
-        self.rootHboxBottom = QtGui.QHBoxLayout()
-        self.rootHboxBottom.setContentsMargins(40, 0, 40, 0) # left, top, right, bottom
-        self.rootVboxBottomRight = QtGui.QVBoxLayout()
-        self.lblConnection = QtGui.QLabel("")
-        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
+        # self.FiatHboxBottom = QtGui.QHBoxLayout()
+        # self.FiatHboxBottom.setContentsMargins(40, 0, 40, 0) # left, top, right, bottom
+        # self.rootVboxBottomRight = QtGui.QVBoxLayout()
+
         self.lblToolTip.setStyleSheet(self.STR_QLABEL_TOOLTIP_STYLESHEET);
         self.lblToolTip.setWordWrap(True);
         self.lblToolTip.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
         self.lblToolTip.setFixedHeight(42)
+        
+        self.lblConnection = QtGui.QLabel("Connection Test")
+        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
         self.lblConnection.setStyleSheet(self.STR_QLABEL_CONNECTION_STATUS_STYLESHEET);
-        self.lblLiveData = QtGui.QLabel("")
+        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
+        
+        self.lblLiveData = QtGui.QLabel("Live Data Test")
         self.lblLiveData.setStyleSheet(self.STR_QLABEL_LIVE_DATA_STYLESHEET);
         self.lblLiveData.setAlignment(QtCore.Qt.AlignRight)
-        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
-        self.rootHboxBottom.addWidget(self.lblToolTip, QtCore.Qt.AlignLeft)
-        self.rootVboxBottomRight.addWidget(self.lblConnection)
-        self.rootVboxBottomRight.addWidget(self.lblLiveData)
-        self.rootHboxBottom.addLayout(self.rootVboxBottomRight, QtCore.Qt.AlignRight)
-        self.rootBottomBlock.setLayout(self.rootHboxBottom)
 
-        self.mainGridLayout.addWidget(self.rootBottomBlock, 13, 0, 1, 4)
+        #   moving
+        self.lblCurrentState = QtGui.QLabel(self.STR_LABEL_CURRENT_STATE)
+        self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblCurrentState.setWordWrap(True);
+        self.lblCurrentState.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
+        # self.mainGridLayout.addWidget(self.lblCurrentState, 2, 2)
+        self.lblInfo = LabelClickable(self.STR_LABEL_INFO)
+        self.lblInfo.setFixedHeight(42)
+        self.lblInfo.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblInfo.setWordWrap(True);
+        self.lblInfo.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
+        # self.mainGridLayout.addWidget(self.lblInfo, 4, 1, 1, 2)
+        
+        # self.rootVboxBottomRight = QtGui.QVBoxLayout()
+        # self.rootVboxBottomRight.addWidget(self.lblConnection)
+        # self.rootVboxBottomRight.addWidget(self.lblLiveData)   
+        # self.FiatHboxBottom.addWidget(self.lblToolTip, QtCore.Qt.AlignLeft)          
+        # self.FiatHboxBottom.addWidget(self.lblCurrentState, 1, 2)
+        # self.FiatHboxBottom.addWidget(self.lblInfo, 2, 2)     
+        # self.FiatHboxBottom.addLayout(self.rootVboxBottomRight, 1, 1, QtCore.Qt.AlignRight)
+        # self.rootBottomBlock.setLayout(self.FiatHboxBottom)
+        
+        # self.mainGridLayout.addWidget(self.rootBottomBlock, 10, 0, 1, 4)
+        
+        self.mainGridLayout.addWidget(self.lblCurrentState, 10, 2)
+        self.mainGridLayout.addWidget(self.lblInfo, 11, 2)
+        self.mainGridLayout.addWidget(self.lblToolTip, 10, 1, QtCore.Qt.AlignLeft)
 
         # Left and Right
         self.rootLeftBlock = QtGui.QWidget()
@@ -423,11 +450,34 @@ class UIGraph():
 
         # Part 1
         self.hBox1 = QtGui.QHBoxLayout()
+        self.vBoxRootButtons = QtGui.QVBoxLayout()
         self.vBoxRadioModeButtons = QtGui.QVBoxLayout()
         self.vBoxSliders = QtGui.QVBoxLayout()
         self.hBoxSliders1 = QtGui.QHBoxLayout()
         self.hBoxSliders2 = QtGui.QHBoxLayout()
         self.hBox1.setSpacing(10)
+
+        self.buttonSettings = ButtonHoverSettings(self.lblToolTip, self.STR_BUTTON_SETTINGS)
+        self.buttonSettings.setVisible(True)
+        self.buttonSettings.clicked.connect(self.EventSettingsButtonClick)
+        self.buttonSettings.setFixedWidth(110)
+        self.buttonSettings.setFixedHeight(28)
+        self.buttonSettings.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        self.buttonSettings.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.buttonDonation = ButtonHoverDonation(self.lblToolTip, self.STR_BUTTON_Donation)
+        # self.buttonDonation.setVisible(True)
+        # self.buttonDonation.clicked.connect(self.EventDonationButtonClick)
+        # self.buttonDonation.setFixedWidth(110)
+        # self.buttonDonation.setFixedHeight(28)
+        # self.buttonDonation.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        # self.buttonDonation.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.buttonInfo = ButtonHoverInfo(self.lblToolTip, self.STR_BUTTON_INFO)
+        self.buttonInfo.setVisible(True)
+        self.buttonInfo.clicked.connect(self.EventInfoButtonClick)
+        self.buttonInfo.setFixedWidth(110)
+        self.buttonInfo.setFixedHeight(28)
+        self.buttonInfo.setStyleSheet(self.STR_QBUTTON_SETTINGS_STYLESHEET)
+        self.buttonInfo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.radioButtonSimulation = RadioHoverSimulation(self.lblToolTip, self.STR_RADIO_SIMULATION)
         self.radioButtonSimulation.setChecked(False)
@@ -455,19 +505,23 @@ class UIGraph():
         self.buttonStart.setStyleSheet(self.STR_QBUTTON_START_STYLESHEET)
         self.buttonStart.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        self.vBoxRootButtons.addWidget(self.buttonSettings, QtCore.Qt.AlignLeft)
+        # self.vBoxRootButtons.addWidget(self.buttonDonation, QtCore.Qt.AlignLeft)
+        self.vBoxRootButtons.addWidget(self.buttonInfo, QtCore.Qt.AlignLeft)
         self.vBoxRadioModeButtons.addWidget(self.radioButtonSimulation)
         self.vBoxRadioModeButtons.addWidget(self.radioButtonTrading)
         self.hBox1.addLayout(self.vBoxRadioModeButtons, QtCore.Qt.AlignLeft)
         self.hBox1.addWidget(self.buttonPause, QtCore.Qt.AlignLeft)
         self.hBox1.addWidget(self.buttonStart, QtCore.Qt.AlignLeft)
+        self.hBox1.addLayout(self.vBoxRootButtons, QtCore.Qt.AlignLeft)
 
         # Slider Risk level
         self.lblRiskLevelSlider1 = QtGui.QLabel("Risk level: ");
-        self.lblRiskLevelSlider1.setFixedWidth(140)
+        # self.lblRiskLevelSlider1.setFixedWidth(140)
         self.lblRiskLevelSlider2 = QtGui.QLabel("Low");
-        self.lblRiskLevelSlider2.setFixedWidth(30);
+        # self.lblRiskLevelSlider2.setFixedWidth(30);
         self.lblRiskLevelSlider3 = QtGui.QLabel("High");
-        self.lblRiskLevelSlider3.setFixedWidth(30)
+        # self.lblRiskLevelSlider3.setFixedWidth(30)
         self.sliderRiskLevel = SliderHoverRiskLevel(self.lblToolTip, QtCore.Qt.Horizontal)
         self.sliderRiskLevel.setMinimum(0)
         self.sliderRiskLevel.setMaximum(100)
@@ -481,26 +535,26 @@ class UIGraph():
         self.lblRiskLevelSlider3.setStyleSheet(self.STR_QLABEL_STYLESHEET)
         self.sliderRiskLevel.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
 
-        self.lblSensitivityLevelSlider1 = QtGui.QLabel("Dips sensitivity: ");
-        self.lblSensitivityLevelSlider1.setFixedWidth(140)
-        self.lblSensitivityLevelSlider2 = QtGui.QLabel("Low");
-        self.lblSensitivityLevelSlider2.setFixedWidth(30)
-        self.lblSensitivityLevelSlider3 = QtGui.QLabel("High");
-        self.lblSensitivityLevelSlider3.setFixedWidth(30)
-        self.sliderSensitivityLevel = SliderHoverSensitivityLevel(self.lblToolTip, QtCore.Qt.Horizontal)
-        self.sliderSensitivityLevel.setMinimum(1)
-        self.sliderSensitivityLevel.setMaximum(6)
-        self.sliderSensitivityLevel.setTickInterval(1)
-        self.sliderSensitivityLevel.setSingleStep(1)
-        self.sliderSensitivityLevel.setFixedWidth(130)
-        self.sliderSensitivityLevel.setValue(self.currentSensitivitySliderValue)
-        self.sliderSensitivityLevel.setTickPosition(QtGui.QSlider.TicksBelow)
-        self.sliderSensitivityLevel.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.sliderSensitivityLevel.valueChanged.connect(self.EventMovedSliderSensitivityLevel)
-        self.lblSensitivityLevelSlider1.setStyleSheet(self.STR_QLABEL_STYLESHEET)
-        self.lblSensitivityLevelSlider2.setStyleSheet(self.STR_QLABEL_STYLESHEET)
-        self.lblSensitivityLevelSlider3.setStyleSheet(self.STR_QLABEL_STYLESHEET)
-        self.sliderSensitivityLevel.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
+        # self.lblSensitivityLevelSlider1 = QtGui.QLabel("Dips sensitivity: ");
+        # self.lblSensitivityLevelSlider1.setFixedWidth(140)
+        # self.lblSensitivityLevelSlider2 = QtGui.QLabel("Low");
+        # self.lblSensitivityLevelSlider2.setFixedWidth(30)
+        # self.lblSensitivityLevelSlider3 = QtGui.QLabel("High");
+        # self.lblSensitivityLevelSlider3.setFixedWidth(30)
+        # self.sliderSensitivityLevel = SliderHoverSensitivityLevel(self.lblToolTip, QtCore.Qt.Horizontal)
+        # self.sliderSensitivityLevel.setMinimum(1)
+        # self.sliderSensitivityLevel.setMaximum(6)
+        # self.sliderSensitivityLevel.setTickInterval(1)
+        # self.sliderSensitivityLevel.setSingleStep(1)
+        # self.sliderSensitivityLevel.setFixedWidth(130)
+        # self.sliderSensitivityLevel.setValue(self.currentSensitivitySliderValue)
+        # self.sliderSensitivityLevel.setTickPosition(QtGui.QSlider.TicksBelow)
+        # self.sliderSensitivityLevel.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        # self.sliderSensitivityLevel.valueChanged.connect(self.EventMovedSliderSensitivityLevel)
+        # self.lblSensitivityLevelSlider1.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+        # self.lblSensitivityLevelSlider2.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+        # self.lblSensitivityLevelSlider3.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+        # self.sliderSensitivityLevel.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
 
         self.vBoxSliders.addLayout(self.hBoxSliders1, QtCore.Qt.AlignLeft)
         self.vBoxSliders.addLayout(self.hBoxSliders2, QtCore.Qt.AlignLeft)
@@ -508,46 +562,99 @@ class UIGraph():
         self.hBoxSliders1.addWidget(self.lblRiskLevelSlider2)
         self.hBoxSliders1.addWidget(self.sliderRiskLevel)
         self.hBoxSliders1.addWidget(self.lblRiskLevelSlider3)
-        self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider1, QtCore.Qt.AlignLeft)
-        self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider2)
-        self.hBoxSliders2.addWidget(self.sliderSensitivityLevel)
-        self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider3)
-
+        # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider1, QtCore.Qt.AlignLeft)
+        # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider2)
+        # self.hBoxSliders2.addWidget(self.sliderSensitivityLevel)
+        # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider3)
 
         # Part 2
+        self.vBox1 = QtGui.QVBoxLayout()
         self.lblLivePrice = QtGui.QLabel()
         self.STR_LABEL_MONEY_MIDDLEMARKET_PRICE = self.theSettings.SETT_GetSettings()["strCryptoType"] + str(" ") + str(self.STR_LABEL_MONEY_MIDDLEMARKET_PRICE)
         self.lblLivePrice.setText(self.STR_LABEL_MONEY_MIDDLEMARKET_PRICE)
-        self.lblInfo = LabelClickable(self.STR_LABEL_INFO)
-        self.lblInfo.setFixedHeight(24)
-        self.lblCurrentState = QtGui.QLabel(self.STR_LABEL_CURRENT_STATE)
-        self.lblFiatBalance = QtGui.QLabel(self.STR_LABEL_FIAT_BALANCE)
-        self.lblCryptoMoneyBalance = QtGui.QLabel(self.STR_LABEL_CRYPTO_BALANCE)
-        self.lblCryptoMoneyBalance.setFixedHeight(20)
-        self.lblTotalGains = QtGui.QLabel(self.STR_LABEL_TOTAL_GAINS)
-
         self.lblLivePrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblInfo.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblFiatBalance.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblCryptoMoneyBalance.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        
+        self.lblTotalGains = QtGui.QLabel(self.STR_LABEL_TOTAL_GAINS)
         self.lblTotalGains.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-
+        
+        self.vBox1.addWidget(self.lblLivePrice, QtCore.Qt.AlignLeft)
+        self.vBox1.addWidget(self.lblTotalGains, QtCore.Qt.AlignLeft)
+        
+        self.lblCryptoFullName = QtGui.QLabel("Bitcoin")# TODO: add full name of the account here
+        self.lblCryptoFullName.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblCryptoAbbr = QtGui.QLabel(str(self.theSettings.SETT_GetSettings()["strCryptoType"]))
+        self.lblCryptoAbbr.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblCryptoMoneyBalance = QtGui.QLabel(self.STR_LABEL_CRYPTO_BALANCE)
+        self.lblCryptoMoneyBalance.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        
+        self.lblCryptoLogo = QtGui.QLabel("lblLogo")
+        pixmap = QtGui.QPixmap('logos/' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + 'Logo.png')
+        smaller_pixmap = pixmap.scaled(64, 64, QtCore.Qt.IgnoreAspectRatio, QtCore.Qt.FastTransformation)
+        self.lblCryptoLogo.setPixmap(smaller_pixmap)
+        
+        self.CryptoHbox = QtGui.QHBoxLayout()
+        # self.FiatHbox.setContentsMargins(40, 10, 40, 0) #
+        self.CryptoVboxRight = QtGui.QVBoxLayout()
+        
+        self.CryptoVboxRight.addWidget(self.lblCryptoFullName)
+        self.CryptoVboxRight.addWidget(self.lblCryptoAbbr)
+        self.CryptoVboxRight.addWidget(self.lblCryptoMoneyBalance)
+        self.CryptoHbox.addWidget(self.lblCryptoLogo, QtCore.Qt.AlignLeft)
+        self.CryptoHbox.addLayout(self.CryptoVboxRight, QtCore.Qt.AlignRight)
+        
+        self.CryptoBlock = QtGui.QWidget()
+        self.CryptoBlock.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        # self.CryptoBlock.setFixedHeight(80)
+        self.CryptoBlock.setLayout(self.CryptoHbox)
+        
+        
+        self.lblFiatFullName = QtGui.QLabel("US Dollar")# TODO: add full name of the account here
+        self.lblFiatFullName.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblFiatAbbr = QtGui.QLabel(str(self.theSettings.SETT_GetSettings()["strFiatType"]))
+        self.lblFiatAbbr.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblFiatBalance = QtGui.QLabel(self.STR_LABEL_FIAT_BALANCE)
+        self.lblFiatBalance.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        
+        self.lblFiatLogo = QtGui.QLabel("lblLogo")
+        pixmap = QtGui.QPixmap('logos/' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + 'Logo.png')
+        smaller_pixmap = pixmap.scaled(64, 64, QtCore.Qt.IgnoreAspectRatio, QtCore.Qt.FastTransformation)
+        self.lblFiatLogo.setPixmap(smaller_pixmap)
+        
+        self.FiatHbox = QtGui.QHBoxLayout()
+        # self.FiatHbox.setContentsMargins(40, 10, 40, 0) #
+        self.FiatVboxRight = QtGui.QVBoxLayout()
+        
+        self.FiatVboxRight.addWidget(self.lblFiatFullName)
+        self.FiatVboxRight.addWidget(self.lblFiatAbbr)
+        self.FiatVboxRight.addWidget(self.lblFiatBalance)
+        self.FiatHbox.addWidget(self.lblFiatLogo, QtCore.Qt.AlignLeft)
+        self.FiatHbox.addLayout(self.FiatVboxRight, QtCore.Qt.AlignRight)
+        
+        self.FiatBlock = QtGui.QWidget()
+        self.FiatBlock.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        # self.FiatBlock.setFixedHeight(80)
+        self.FiatBlock.setLayout(self.FiatHbox)
+        
+        
+        
         # Add widgets to layout
-        self.mainGridLayout = QtGui.QGridLayout()
+        self.mainGridLayout = QtGui.QGridLayout()   
 
-        self.mainGridLayout.addWidget(self.rootMiddleBlock1, 5, 0, 1, 4)
-        self.mainGridLayout.addWidget(self.lblLivePrice, 1, 2)
-        self.mainGridLayout.addWidget(self.lblCurrentState, 2, 2)
-        self.mainGridLayout.addWidget(self.lblInfo, 4, 1, 1, 2)
-        self.mainGridLayout.addWidget(self.lblFiatBalance, 1, 1, QtCore.Qt.AlignLeft)
-        self.mainGridLayout.addWidget(self.lblCryptoMoneyBalance, 2, 1, QtCore.Qt.AlignLeft)
-        self.mainGridLayout.addWidget(self.lblTotalGains, 3, 1, QtCore.Qt.AlignLeft)
-        self.mainGridLayout.addLayout(self.hBox1, 6, 1, QtCore.Qt.AlignLeft)
-        self.mainGridLayout.addLayout(self.vBoxSliders, 6, 2, QtCore.Qt.AlignLeft)
-        self.mainGridLayout.addWidget(self.rootMiddleBlock2, 7, 0, 1, 4)
-
-
+        self.mainGridLayout.addWidget(self.FiatBlock, 1,1)
+        self.mainGridLayout.addWidget(self.CryptoBlock, 2,1)
+        
+        
+        # self.mainGridLayout.addWidget(self.rootMiddleBlock1, 5, 0, 1, 4)
+        # self.mainGridLayout.addWidget(self.lblFiatBalance, 1, 1, QtCore.Qt.AlignLeft)
+        # self.mainGridLayout.addWidget(self.lblCryptoMoneyBalance, 2, 1, QtCore.Qt.AlignLeft)
+        # self.mainGridLayout.addWidget(self.lblLivePrice, 3, 2)
+        # self.mainGridLayout.addWidget(self.lblTotalGains, 4, 2, QtCore.Qt.AlignLeft)
+        self.mainGridLayout.addLayout(self.vBox1, 3, 2, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addLayout(self.hBox1, 1, 2, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addLayout(self.vBoxSliders, 2, 2, QtCore.Qt.AlignCenter)
+        # self.mainGridLayout.addWidget(self.rootMiddleBlock2, 7, 0, 1, 4)
+        
+        
         # Each column of the grid layout has the same total width proportion
         self.mainGridLayout.setColumnStretch(1, 1)
         self.mainGridLayout.setColumnStretch(2, 1)
@@ -556,44 +663,44 @@ class UIGraph():
     def initializeGraphWidgets(self):
 
         pg.setConfigOption('foreground', 'w')
-        pg.setConfigOption('background', (32, 48, 68))
+        pg.setConfigOption('background', (30, 30, 30))
         pg.GraphicsLayout(border=(100,100,100))
-
-        self.strPlot1Title = str(self.theSettings.SETT_GetSettings()["strTradingPair"]) + ' Coinbase Pro Market Price (' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + ')'
+        
+        self.strPlot1Title = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + ' Market Overview (' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + ')'
         self.plot1 = pg.PlotWidget(title=self.strPlot1Title, axisItems={'bottom': TimeAxisItem(orientation='bottom')})
         self.plot1.setYRange(self.minInPlot1, self.maxInPlot1)
         self.plot1.setMouseEnabled(False, False) # Mettre False, True pour release
         self.plot1.setMenuEnabled(False)
+        self.plot1.showGrid(x=False, y=True, alpha=0.2)
         axis = self.plot1.getAxis('bottom')  # This is the trick
         axis.setStyle(textFillLimits = [(0, 0.7)])
 
-        #self.plot1.plotItem.vb.setBackgroundColor((15, 25, 34, 255))
-        self.plot2 = pg.PlotWidget(title='Astibot decision indicator (normalized)')
-        self.plot2.showGrid(x=True,y=True,alpha=0.1)
-        self.plot2.setYRange(-100, 100)
-        self.plot2.setMouseEnabled(False, True)
-        self.plot2.setMouseEnabled(False)
-        self.plot2.hideAxis('bottom')
-
+        # self.plot1.plotItem.vb.setBackgroundColor((15, 25, 34, 255))
+        # self.plot2 = pg.PlotWidget(title='Astibot decision indicator (normalized)')
+        # self.plot2.showGrid(x=True,y=True,alpha=0.1)
+        # self.plot2.setYRange(-100, 100)
+        # self.plot2.setMouseEnabled(False, True)
+        # self.plot2.setMouseEnabled(False)
+        # self.plot2.hideAxis('bottom')
+        
         # Graphs take one row but 2 columns
-        self.mainGridLayout.addWidget(self.plot1, 9, 1, 1, 2)
-        self.mainGridLayout.addWidget(self.plot2, 10, 1, 1, 2)
-
+        self.mainGridLayout.addWidget(self.plot1, 3, 1)
+        # self.mainGridLayout.addWidget(self.plot2, 10, 1, 1, 2)
+   
         # Graph curves initialization
         self.plot1GraphLivePrice = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPrice, name='     Price') # , clipToView=True
-        self.plot1GraphLivePrice.setPen(color=(220,220,220), width=3)
-        self.plot1GraphSmoothPriceFast = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast, name='    Price Fast MA')
-        self.plot1GraphSmoothPriceFast.setPen(color=(3,86,243), width=2)
-        self.plot1GraphSmoothPriceSlow = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow, name='    Price Slow MA')
-        self.plot1GraphSmoothPriceSlow.setPen(color=(230,79,6), width=2)
-        self.plot1GraphRiskLine = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine, name='    Risk Line')
-        self.plot1GraphRiskLine.setPen(color=(255,46,46), width=2, style=QtCore.Qt.DotLine)
+        self.plot1GraphLivePrice.setPen(color=(97,54,142), width=3)
+        # self.plot1GraphSmoothPriceFast = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast, name='    Price Fast MA')
+        # self.plot1GraphSmoothPriceFast.setPen(color=(3,86,243), width=2)
+        # self.plot1GraphSmoothPriceSlow = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow, name='    Price Slow MA')
+        # self.plot1GraphSmoothPriceSlow.setPen(color=(230,79,6), width=2)        
+        # self.plot1GraphRiskLine = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine, name='    Risk Line')
+        # self.plot1GraphRiskLine.setPen(color=(255,46,46), width=2, style=QtCore.Qt.DotLine)
         self.plot1Markers1 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1, name='      Buy', pen=None, symbol='o', symbolPen=(43, 206, 55), symbolBrush=(43, 206, 55), symbolSize = 30)
         self.plot1Markers2 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2, name='      Sell', pen=None, symbol='o', symbolPen=(255, 0, 0), symbolBrush=(255, 0, 0), symbolSize = 30)
 
         # Graph 2 (Indicators) curves initialization
-        self.plot2GraphIndicatorMACD = self.plot2.plot(x=self.graphDataTime, y=self.graphDataIndicatorMACD, pen='y', name='     MACD')
-
+        # self.plot2GraphIndicatorMACD = self.plot2.plot(x=self.graphDataTime, y=self.graphDataIndicatorMACD, pen='y', name='     MACD')
         self.graphicObject = pg.GraphicsObject()
 
     def initInitialTimeVector(self, firstFutureSampleTimeStamp):
@@ -666,13 +773,12 @@ class UIGraph():
     def UIGR_updateGraphs(self):
 
         self.plot1GraphLivePrice.setData(x=self.graphDataTime, y=self.graphDataBitcoinPrice)
-        self.plot1GraphSmoothPriceFast.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast)
-        self.plot1GraphSmoothPriceSlow.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow)
+        # self.plot1GraphSmoothPriceFast.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast)
+        # self.plot1GraphSmoothPriceSlow.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow)
         self.plot1Markers1.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1)
         self.plot1Markers2.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2)
-        self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
-        self.plot2GraphIndicatorMACD.setData(x=self.graphDataTime, y=self.graphDataIndicatorMACD, fillLevel=0, brush=(255, 243, 20, 80))
-
+        # self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
+        # self.plot2GraphIndicatorMACD.setData(x=self.graphDataTime, y=self.graphDataIndicatorMACD, fillLevel=0, brush=(255, 243, 20, 80))
         # Update Y avis scale in live market mode
         if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
             if (self.totalNbIterations > 1): # Avoid computing min on a full of zeros array which throws an exception
@@ -753,8 +859,11 @@ class UIGraph():
                 strSimulationPrecision = ""
             else:
                 strSimulationPrecision = " (Simulation)"
-            self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
-            self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
+            # self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
+            # self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
+
+            self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + strSimulationPrecision)
+            self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + strSimulationPrecision)
         else:
             self.safeUIRefreshIsRequested = True
 
@@ -763,9 +872,10 @@ class UIGraph():
             strSimulationPrecision = ""
         else:
             strSimulationPrecision = " (Simulation)"
-        self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
-        self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
-
+        # self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
+        # self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
+        self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + strSimulationPrecision)
+        self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + strSimulationPrecision)
 
     def UIGR_updatePriceLbl(self, newPrice):
 
@@ -990,8 +1100,10 @@ class UIGraph():
         self.lblTotalGains.setText(self.lblTotalGains.text().replace("EUR", "---"))
         self.lblTotalGains.setText(self.lblTotalGains.text().replace("---", self.theSettings.SETT_GetSettings()["strFiatType"]))
 
-        self.STR_LABEL_FIAT_BALANCE = str(self.theSettings.SETT_GetSettings()["strFiatType"]) + " Account Balance : "
-        self.STR_LABEL_CRYPTO_BALANCE = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + " Account Balance : "
+        # self.STR_LABEL_FIAT_BALANCE = str(self.theSettings.SETT_GetSettings()["strFiatType"]) + " Account Balance : "
+        # self.STR_LABEL_CRYPTO_BALANCE = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + " Account Balance : "
+        self.STR_LABEL_FIAT_BALANCE = ""
+        self.STR_LABEL_CRYPTO_BALANCE = ""
 
         self.strPlot1Title = str(self.theSettings.SETT_GetSettings()["strTradingPair"]) + ' Coinbase Pro Market Price (' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + ')'
         self.plot1.setTitle(self.strPlot1Title)
