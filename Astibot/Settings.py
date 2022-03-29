@@ -11,8 +11,8 @@ class Settings(object):
         print("SETT - Constructor")
 
         # Default settings if no settings file has been saved
-        self.settings = {"strAPIKey": "",
-                    "strSecretKey": "",
+        self.settings = {"strAPIKey": "5St8GRwYWckPOeWpp88FZQx87A5KRR6A9dDnV6BQVIOBSy2XGk2xRGpOPei2CgWk",
+                    "strSecretKey": "teQDw85j5jDk8EokZDd4aaBDfHP0p9HCOqpYVzb2MyzU3EDLGIBmjKcOUUTFmdYZ",
                     "strPassphrase": "",
                     "bHasAcceptedConditions": False,
                     "strTradingPair": "BTCUSDT",
@@ -25,6 +25,7 @@ class Settings(object):
                     "simulatedFiatBalance": 1000,
                     "simulationSpeed": 20,
                     "simulationTimeRange": 24,
+                    "baseURL": "https://testnet.binance.vision"
                     }
 
         self.tradingPairHasChanged = False
