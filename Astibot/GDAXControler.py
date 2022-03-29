@@ -760,7 +760,6 @@ class GDAXControler():
                     self.HistoricDataRaw.append(new_slice)
             except BaseException as e:
                 print("GDAX - Exception when reversing historic data slice")
-            print("Historic : %s " % HistoricDataSlice)
 
             startSlice = stopSlice  # Prepare next iteration
 
