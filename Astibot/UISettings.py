@@ -75,7 +75,7 @@ class UISettings(QtGui.QWidget):
 
         self.strTradingPair = self.theSettings.SETT_GetSettings()["strTradingPair"]
         self.strApplicableTradingPair = self.strTradingPair
-        self.comboTradingPair.setCurrentIndex(GDAXCurrencies.get_index_for_currency_pair(self.strTradingPair))
+        # self.comboTradingPair.setCurrentIndex(GDAXCurrencies.get_index_for_currency_pair(self.strTradingPair))
 
         self.strFiatType = self.theSettings.SETT_GetSettings()["strFiatType"]
         self.strCryptoType = self.theSettings.SETT_GetSettings()["strCryptoType"]
