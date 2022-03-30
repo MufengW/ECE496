@@ -156,6 +156,7 @@ class GDAXControler():
             print("GDAX - Initialization of GDAX connection successful")
             self.IsConnectedAndOperational = "True"
             self.theUIGraph.UIGR_updateInfoText("Authentication successful", False)
+            self.refreshTransactionHistory()
             self.theUIGraph.UIGR_updateTransactionHistory(self.GDAX_GetTransactionHistory())
         else:
             print("GDAX - Initialization of GDAX connection failed")
