@@ -138,6 +138,7 @@ class UIGraph():
         pg.setConfigOptions(antialias=True)
         nbPointsOnPlot = self.MAX_NB_POINTS_ON_PLOT
         self.UIGR_ResetAllGraphData(False, -1, nbPointsOnPlot)
+        self.transactionHistory = []
 
         # Layouts and widgets init
         self.initializeTopWindowWidgets()
@@ -844,6 +845,10 @@ class UIGraph():
             self.maxInPlot1 = maxInPlot1
             self.plot1.setYRange(minInPlot1, maxInPlot1)
 
+    def UIGR_updateTransactionHistory(self, transHistory):
+        if transHistory != []:
+            self.transactionHistory = transHistory
+            print('++++++', self.transactionHistory)
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
         self.strEURBalance = str(EURBalance)

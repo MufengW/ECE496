@@ -48,7 +48,7 @@ class TransactionManager(object):
         self.orderPlacingState = 'NONE'
         self.orderPlacingMinMaxPrice = 0
         self.orderPlacingCurrentPriceInFiat = 0
-
+        self.transactionHistory = []
         self.isRunning = True
 
 

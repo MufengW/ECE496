@@ -32,6 +32,7 @@ class GDAXControler():
 
         self.products = None
         self.clientAuth = None
+        self.webSocketClient = None
         self._sequence = None
         self.api_key = None
         self.api_secret = None
@@ -64,6 +65,7 @@ class GDAXControler():
         self.CryptoAccount = {}
         self.FiatAccount = {}
 
+        self.transactionHistory = None
         self.HistoricData = []
         self.HistoricDataReadIndex = 0
         self.HistoricDataSubSchedulingIndex = 0
@@ -106,7 +108,14 @@ class GDAXControler():
             self.liveBestAskPrice = 0
 
     def startWebSocketFeed(self):
-        twm = Client(self.api_key, self.api_secret, self.baseURL)
+        self.webSocketClient = WBClient(stream_url="wss://testnet.binance.vision")
+        self.webSocketClient.start()
+        response = self.clientAuth.new_listen_key()
+        self.webSocketClient.user_data(
+            listen_key=response["listenKey"],
+            id=1,
+            callback=self.message_handler,
+        )
 
     def PerformConnectionInitializationAttempt(self):
         print("GDAX - Performing connection initialization attempt...")
@@ -132,16 +141,12 @@ class GDAXControler():
             self.account = self.clientAuth.account()
             time.sleep(0.05)
             print("GDAX - Init, Accounts retrieving: %s" % self.account)
+            self.startWebSocketFeed()
             self.accountExist = True
             self.refreshAccounts()
             # MURPHY TODO: check retrieving account for real accounts
         except ClientError as e:
             print("GDAX - Client connection error")
-            print("GDAX - Exception : " + str(e))
-            self.theUIGraph.UIGR_updateInfoText(
-                "Connection to Coinbase Pro server failed. GDAX - Exception : " + str(e), True)
-        except ServerError as e:
-            print("GDAX - Server connection error")
             print("GDAX - Exception : " + str(e))
             self.theUIGraph.UIGR_updateInfoText(
                 "Connection to Coinbase Pro server failed. GDAX - Exception : " + str(e), True)
@@ -157,6 +162,19 @@ class GDAXControler():
             # Display error message
             self.theUIGraph.UIGR_updateInfoText(
                 "Connection to Coinbase Pro server failed. Check your internet connection.", True)
+    #     DEBUG !!! Test order placing
+        params = {
+            "symbol": 'BTCUSDT',
+            "side": "SELL",
+            "type": "MARKET",
+            # "timeInForce": "GTC",
+            "quantity": 0.01,
+            # "price": 0,
+        }
+        # for i in range(3):
+        #     self.clientAuth.new_order(**params)
+        #     print(self.transactionHistory)
+        #     time.sleep(0.1)
 
     def GDAX_NotifyThatTradingPairHasChanged(self):
         self.productStr = self.theSettings.SETT_GetSettings()["strTradingPair"]
@@ -165,12 +183,37 @@ class GDAXControler():
         self.HistoricData = []
         self.HistoricDataReadIndex = 0
 
+    def GDAX_GetTransactionHistory(self):
+        print("GDAX - GetTransactionHistory")
+        if self.accountExist:
+            try:
+                rawHistory = self.transactionHistory
+                processed_history = []
+                local_tz = get_localzone()
+                i = 0
+                for line in rawHistory:
+                    if i > 6:
+                        break
+                    time = line['time']
+                    ISO_time = datetime.fromtimestamp(time/1000, local_tz).isoformat()
+                    hist = {'symbol': line['symbol'], 'side': line['side'], 'price' : line['price'], 'quantity' : line['executedQty'], 'time': ISO_time}
+                    processed_history.append(hist)
+                    i += 1
+                return processed_history
+            except BaseException as e:
+                print("error", e)
+                print("GDAX - Error retrieving transaction history")
+                return 0
+        else:
+            print("GDAX - Does not exist")
+            return 0
+
     # Returns the Available fiat balance (ie. money that can be used and that is not held for any pending order)
     def GDAX_GetFiatAccountBalance(self):
         print("GDAX - GetFiatAccountBalance")
         if self.accountExist:
             try:
-                print(self.FiatAccount)
+                # print(self.FiatAccount)
                 balanceToReturn = (round(float(self.FiatAccount['free']), 8))
                 return balanceToReturn
             except BaseException as e:
@@ -255,6 +298,13 @@ class GDAXControler():
             print(e)
             print("GDAX - Error in refreshAccounts")
 
+    def refreshTransactionHistory(self):
+        try:
+             self.transactionHistory = self.clientAuth.get_orders(self.productStr)
+        except BaseException as e:
+            print(e)
+            print("GDAX - Error in refreshTransactionHistory")
+
     def GDAX_RefreshAccountsDisplayOnly(self):
         if theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET:
             self.theUIGraph.UIGR_updateAccountsBalance(self.GDAX_GetFiatAccountBalance(),
@@ -276,7 +326,7 @@ class GDAXControler():
         self.webSocketLock.acquire()
 
         # Listen for user orders
-        if 'order_id' in message:
+        if 'orderId' in message:
             if message['order_id'] == self.currentOrderId:
                 print("GDAX - Current order msg: %s" % message)
                 order_type = message['type']
@@ -324,6 +374,19 @@ class GDAXControler():
         self.liveBestAskPrice = self.get_ask()
         # print("Ask %s" % self.liveBestAskPrice)
 
+        self.webSocketLock.release()
+    def message_handler(self, message):
+        # super(GDAXControler, self).message_handler(message)
+
+        self.webSocketLock.acquire()
+        # TODO: Use on_message as an example to finish this function
+        # Listen for user orders
+        # print("GDAX - Current order msg: %s" % message)
+
+        # TODO: should refresh undeer some cases
+        # self.refreshAccounts()
+        self.refreshTransactionHistory()
+        self.theUIGraph.UIGR_updateTransactionHistory(self.GDAX_GetTransactionHistory())
         self.webSocketLock.release()
 
     def on_close(self):
@@ -377,8 +440,8 @@ class GDAXControler():
                 self.midMarketPrice = (self.tickBestBidPrice + self.tickBestAskPrice) / 2
 
                 # DEBUG
-                print("GDAX - Highest Bid: %s" % self.tickBestBidPrice)
-                print("GDAX - Lowest Ask: %s" % self.tickBestAskPrice)
+                # print("GDAX - Highest Bid: %s" % self.tickBestBidPrice)
+                # print("GDAX - Lowest Ask: %s" % self.tickBestAskPrice)
 
                 self.PriceSpread = self.tickBestBidPrice - self.tickBestAskPrice
                 self.theUIGraph.UIGR_updateConnectionText("Price data received from Coinbase Pro server")
@@ -792,7 +855,7 @@ class GDAXControler():
     # Returns a price data sample CONFIG_TIME_BETWEEN_RETRIEVED_SAMPLES_IN_MS seconds after the last call
     # even if GDAX historic sample period is longer
     def GDAX_GetNextHistoricDataSample(self):
-        print("GDAX - Full Historic data list length is %s" % len(self.HistoricData))
+        # print("GDAX - Full Historic data list length is %s" % len(self.HistoricData))
 
         endOfList = False
         self.HistoricDataReadIndex = self.HistoricDataReadIndex + 1
