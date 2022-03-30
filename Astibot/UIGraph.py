@@ -374,7 +374,7 @@ class UIGraph():
         # self.rootHboxTop.addWidget(self.buttonInfo, QtCore.Qt.AlignRight)
         self.rootTopBlock.setLayout(self.rootHboxTop)
         
-        # self.mainGridLayout.addWidget(self.rootTopBlock, 0, 0, 1, 4)
+        self.mainGridLayout.addWidget(self.rootTopBlock, 0, 0, 1, 5)
 
         # Bottom ==================================
         self.rootBottomBlock = QtGui.QWidget()
@@ -409,7 +409,7 @@ class UIGraph():
         # self.FiatHboxBottom.addLayout(self.rootVboxBottomRight, 1, 1, QtCore.Qt.AlignRight)
         # self.rootBottomBlock.setLayout(self.FiatHboxBottom)
         
-        # self.mainGridLayout.addWidget(self.rootBottomBlock, 10, 0, 1, 4)
+        self.mainGridLayout.addWidget(self.rootBottomBlock, 14, 0, 1, 5)
         
         # self.mainGridLayout.addWidget(self.lblToolTip, 3, 1, 1, 2, QtCore.Qt.AlignLeft)
 
