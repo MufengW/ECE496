@@ -627,6 +627,8 @@ class UIGraph():
         self.row3Hbox = QtGui.QHBoxLayout()
         self.row4Hbox = QtGui.QHBoxLayout()
         self.row5Hbox = QtGui.QHBoxLayout()
+        self.row6Hbox = QtGui.QHBoxLayout()
+        self.row7Hbox = QtGui.QHBoxLayout()
         self.historyVbox = QtGui.QVBoxLayout()
         
         self.lblTradePair = QtGui.QLabel("TradePair")
@@ -634,11 +636,11 @@ class UIGraph():
         self.lblTransPrice = QtGui.QLabel("Price")
         self.lblTransAmount = QtGui.QLabel("Amount")
         self.lblTransTime = QtGui.QLabel("Time")
-        # self.lblTradePair.setFixedWidth(110)
-        # self.lblOperation.setFixedWidth(110)
-        # self.lblTransPrice.setFixedWidth(110)
-        # self.lblTransAmount.setFixedWidth(110)
-        # self.lblTransTime.setFixedWidth(120)
+        self.lblTradePair.setFixedWidth(110)
+        self.lblOperation.setFixedWidth(110)
+        self.lblTransPrice.setFixedWidth(110)
+        self.lblTransAmount.setFixedWidth(110)
+        self.lblTransTime.setFixedWidth(130)
         self.lblTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblTransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -658,6 +660,11 @@ class UIGraph():
         self.lblLast1TransPrice = QtGui.QLabel("")
         self.lblLast1TransAmount = QtGui.QLabel("")
         self.lblLast1TransTime = QtGui.QLabel("")
+        self.lblLast1TransTradePair.setFixedWidth(110)
+        self.lblLast1TransOperation.setFixedWidth(110)
+        self.lblLast1TransPrice.setFixedWidth(110)
+        self.lblLast1TransAmount.setFixedWidth(110)
+        self.lblLast1TransTime.setFixedWidth(130)
         self.lblLast1TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast1TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -677,6 +684,11 @@ class UIGraph():
         self.lblLast2TransPrice = QtGui.QLabel("")
         self.lblLast2TransAmount = QtGui.QLabel("")
         self.lblLast2TransTime = QtGui.QLabel("")
+        self.lblLast2TransTradePair.setFixedWidth(110)
+        self.lblLast2TransOperation.setFixedWidth(110)
+        self.lblLast2TransPrice.setFixedWidth(110)
+        self.lblLast2TransAmount.setFixedWidth(110)
+        self.lblLast2TransTime.setFixedWidth(130)
         self.lblLast2TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast2TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -696,6 +708,11 @@ class UIGraph():
         self.lblLast3TransPrice = QtGui.QLabel("")
         self.lblLast3TransAmount = QtGui.QLabel("")
         self.lblLast3TransTime = QtGui.QLabel("")
+        self.lblLast3TransOperation.setFixedWidth(110)
+        self.lblLast3TransPrice.setFixedWidth(110)
+        self.lblLast3TransAmount.setFixedWidth(110)
+        self.lblLast3TransTradePair.setFixedWidth(110)
+        self.lblLast3TransTime.setFixedWidth(130)
         self.lblLast3TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast3TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -715,6 +732,11 @@ class UIGraph():
         self.lblLast4TransPrice = QtGui.QLabel("")
         self.lblLast4TransAmount = QtGui.QLabel("")
         self.lblLast4TransTime = QtGui.QLabel("")
+        self.lblLast4TransTradePair.setFixedWidth(110)
+        self.lblLast4TransOperation.setFixedWidth(110)
+        self.lblLast4TransPrice.setFixedWidth(110)
+        self.lblLast4TransAmount.setFixedWidth(110)
+        self.lblLast4TransTime.setFixedWidth(130)
         self.lblLast4TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblLast4TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -729,6 +751,77 @@ class UIGraph():
         self.row4Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
         self.row4Block.setLayout(self.row4Hbox)
         
+        self.lblLast5TransTradePair = QtGui.QLabel("")
+        self.lblLast5TransOperation = QtGui.QLabel("")
+        self.lblLast5TransPrice = QtGui.QLabel("")
+        self.lblLast5TransAmount = QtGui.QLabel("")
+        self.lblLast5TransTime = QtGui.QLabel("")
+        self.lblLast5TransTradePair.setFixedWidth(110)
+        self.lblLast5TransOperation.setFixedWidth(110)
+        self.lblLast5TransPrice.setFixedWidth(110)
+        self.lblLast5TransAmount.setFixedWidth(110)
+        self.lblLast5TransTime.setFixedWidth(130)
+        self.lblLast5TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast5TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast5TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast5TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.row5Hbox.addWidget(self.lblLast5TransTradePair, QtCore.Qt.AlignLeft)
+        self.row5Hbox.addWidget(self.lblLast5TransOperation, QtCore.Qt.AlignLeft)
+        self.row5Hbox.addWidget(self.lblLast5TransPrice, QtCore.Qt.AlignLeft)
+        self.row5Hbox.addWidget(self.lblLast5TransAmount, QtCore.Qt.AlignLeft)
+        self.row5Hbox.addWidget(self.lblLast5TransTime, QtCore.Qt.AlignLeft)
+        self.row5Block = QtGui.QWidget()
+        self.row5Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row5Block.setLayout(self.row5Hbox)
+        
+        self.lblLast6TransTradePair = QtGui.QLabel("")
+        self.lblLast6TransOperation = QtGui.QLabel("")
+        self.lblLast6TransPrice = QtGui.QLabel("")
+        self.lblLast6TransAmount = QtGui.QLabel("")
+        self.lblLast6TransTime = QtGui.QLabel("")
+        self.lblLast6TransTradePair.setFixedWidth(110)
+        self.lblLast6TransOperation.setFixedWidth(110)
+        self.lblLast6TransPrice.setFixedWidth(110)
+        self.lblLast6TransAmount.setFixedWidth(110)
+        self.lblLast6TransTime.setFixedWidth(130)
+        self.lblLast6TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast6TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast6TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast6TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.row6Hbox.addWidget(self.lblLast6TransTradePair, QtCore.Qt.AlignLeft)
+        self.row6Hbox.addWidget(self.lblLast6TransOperation, QtCore.Qt.AlignLeft)
+        self.row6Hbox.addWidget(self.lblLast6TransPrice, QtCore.Qt.AlignLeft)
+        self.row6Hbox.addWidget(self.lblLast6TransAmount, QtCore.Qt.AlignLeft)
+        self.row6Hbox.addWidget(self.lblLast6TransTime, QtCore.Qt.AlignLeft)
+        self.row6Block = QtGui.QWidget()
+        self.row6Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row6Block.setLayout(self.row6Hbox)
+        
+        self.lblLast7TransTradePair = QtGui.QLabel("")
+        self.lblLast7TransOperation = QtGui.QLabel("")
+        self.lblLast7TransPrice = QtGui.QLabel("")
+        self.lblLast7TransAmount = QtGui.QLabel("")
+        self.lblLast7TransTime = QtGui.QLabel("")
+        self.lblLast7TransTradePair.setFixedWidth(110)
+        self.lblLast7TransOperation.setFixedWidth(110)
+        self.lblLast7TransPrice.setFixedWidth(110)
+        self.lblLast7TransAmount.setFixedWidth(110)
+        self.lblLast7TransTime.setFixedWidth(130)
+        self.lblLast7TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast7TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast7TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast7TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.row7Hbox.addWidget(self.lblLast7TransTradePair, QtCore.Qt.AlignLeft)
+        self.row7Hbox.addWidget(self.lblLast7TransOperation, QtCore.Qt.AlignLeft)
+        self.row7Hbox.addWidget(self.lblLast7TransPrice, QtCore.Qt.AlignLeft)
+        self.row7Hbox.addWidget(self.lblLast7TransAmount, QtCore.Qt.AlignLeft)
+        self.row7Hbox.addWidget(self.lblLast7TransTime, QtCore.Qt.AlignLeft)
+        self.row7Block = QtGui.QWidget()
+        self.row7Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row7Block.setLayout(self.row7Hbox)
         # self.historyVbox.addLayout(self.rowHeadingHbox, QtCore.Qt.AlignRight)
         # self.historyVbox.addLayout(self.row1Hbox, QtCore.Qt.AlignRight)
         # self.historyVbox.addLayout(self.row2Hbox, QtCore.Qt.AlignRight)
@@ -770,12 +863,15 @@ class UIGraph():
         self.mainGridLayout.addWidget(self.row2Block, 5, 4, QtCore.Qt.AlignCenter)
         self.mainGridLayout.addWidget(self.row3Block, 6, 4, QtCore.Qt.AlignCenter)
         self.mainGridLayout.addWidget(self.row4Block, 7, 4, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addWidget(self.row5Block, 8, 4, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addWidget(self.row6Block, 9, 4, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addWidget(self.row7Block, 10, 4, QtCore.Qt.AlignCenter)
         
-        self.mainGridLayout.addWidget(self.lblCurrentState, 9, 4, QtCore.Qt.AlignCenter)
-        self.mainGridLayout.addWidget(self.lblInfo, 10, 4, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addWidget(self.lblCurrentState, 12, 4, QtCore.Qt.AlignCenter)
+        self.mainGridLayout.addWidget(self.lblInfo, 13, 4, QtCore.Qt.AlignCenter)
         
         self.mainGridLayout.setRowStretch(1, 0)
-        self.mainGridLayout.setRowStretch(8, 1)
+        self.mainGridLayout.setRowStretch(11, 1)
         # self.mainGridLayout.setRowStretch(9, 5)
         # self.mainGridLayout.setColumnStretch(0, 0)
         # self.mainGridLayout.setColumnStretch(4, 2)
@@ -828,7 +924,7 @@ class UIGraph():
         # self.plot2.hideAxis('bottom')
         
         # Graphs take one row but 2 columns
-        self.mainGridLayout.addWidget(self.plot1, 2, 1, 8, 3)
+        self.mainGridLayout.addWidget(self.plot1, 2, 1, 12, 3)
         # self.mainGridLayout.addWidget(self.plot2, 10, 1, 1, 2)
    
         # Graph curves initialization
@@ -998,44 +1094,42 @@ class UIGraph():
             self.lblLast1TransPrice.setText(self.transactionHistory[0]["price"])
             self.lblLast1TransAmount.setText(self.transactionHistory[0]["quantity"])
             self.lblLast1TransTime.setText(self.transactionHistory[0]["time"])
-            self.lblLast1TransTradePair.setFixedWidth(110)
-            self.lblLast1TransOperation.setFixedWidth(110)
-            self.lblLast1TransPrice.setFixedWidth(110)
-            self.lblLast1TransAmount.setFixedWidth(110)
-            self.lblLast1TransTime.setFixedWidth(130)
             # row 2
             self.lblLast2TransTradePair.setText(self.transactionHistory[1]["symbol"])
             self.lblLast2TransOperation.setText(self.transactionHistory[1]["side"])
             self.lblLast2TransPrice.setText(self.transactionHistory[1]["price"])
             self.lblLast2TransAmount.setText(self.transactionHistory[1]["quantity"])
             self.lblLast2TransTime.setText(self.transactionHistory[1]["time"])
-            self.lblLast2TransTradePair.setFixedWidth(110)
-            self.lblLast2TransOperation.setFixedWidth(110)
-            self.lblLast2TransPrice.setFixedWidth(110)
-            self.lblLast2TransAmount.setFixedWidth(110)
-            self.lblLast2TransTime.setFixedWidth(130)
             # row 3
             self.lblLast3TransTradePair.setText(self.transactionHistory[2]["symbol"])
             self.lblLast3TransOperation.setText(self.transactionHistory[2]["side"])
             self.lblLast3TransPrice.setText(self.transactionHistory[2]["price"])
             self.lblLast3TransAmount.setText(self.transactionHistory[2]["quantity"])
             self.lblLast3TransTime.setText(self.transactionHistory[2]["time"])
-            self.lblLast3TransTradePair.setFixedWidth(110)
-            self.lblLast3TransOperation.setFixedWidth(110)
-            self.lblLast3TransPrice.setFixedWidth(110)
-            self.lblLast3TransAmount.setFixedWidth(110)
-            self.lblLast3TransTime.setFixedWidth(130)
             # row 4
             self.lblLast4TransTradePair.setText(self.transactionHistory[3]["symbol"])
             self.lblLast4TransOperation.setText(self.transactionHistory[3]["side"])
             self.lblLast4TransPrice.setText(self.transactionHistory[3]["price"])
             self.lblLast4TransAmount.setText(self.transactionHistory[3]["quantity"])
             self.lblLast4TransTime.setText(self.transactionHistory[3]["time"])
-            self.lblLast4TransTradePair.setFixedWidth(110)
-            self.lblLast4TransOperation.setFixedWidth(110)
-            self.lblLast4TransPrice.setFixedWidth(110)
-            self.lblLast4TransAmount.setFixedWidth(110)
-            self.lblLast4TransTime.setFixedWidth(130)
+            # row 5
+            self.lblLast5TransTradePair.setText(self.transactionHistory[4]["symbol"])
+            self.lblLast5TransOperation.setText(self.transactionHistory[4]["side"])
+            self.lblLast5TransPrice.setText(self.transactionHistory[4]["price"])
+            self.lblLast5TransAmount.setText(self.transactionHistory[4]["quantity"])
+            self.lblLast5TransTime.setText(self.transactionHistory[4]["time"])
+            # row 6
+            self.lblLast6TransTradePair.setText(self.transactionHistory[5]["symbol"])
+            self.lblLast6TransOperation.setText(self.transactionHistory[5]["side"])
+            self.lblLast6TransPrice.setText(self.transactionHistory[5]["price"])
+            self.lblLast6TransAmount.setText(self.transactionHistory[5]["quantity"])
+            self.lblLast6TransTime.setText(self.transactionHistory[5]["time"])
+            # row 7
+            self.lblLast7TransTradePair.setText(self.transactionHistory[6]["symbol"])
+            self.lblLast7TransOperation.setText(self.transactionHistory[6]["side"])
+            self.lblLast7TransPrice.setText(self.transactionHistory[6]["price"])
+            self.lblLast7TransAmount.setText(self.transactionHistory[6]["quantity"])
+            self.lblLast7TransTime.setText(self.transactionHistory[6]["time"])
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
         self.strEURBalance = str(EURBalance)
