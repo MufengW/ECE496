@@ -198,7 +198,8 @@ class GDAXControler():
                         break
                     time = line['time']
                     ISO_time = datetime.fromtimestamp(time/1000, local_tz).isoformat()
-                    hist = {'symbol': line['symbol'], 'side': line['side'], 'price' : line['price'], 'quantity' : line['executedQty'], 'time': ISO_time}
+                    time_short = datetime.fromtimestamp(time/1000, local_tz).strftime("%b %d, %H:%M")
+                    hist = {'symbol': line['symbol'], 'side': line['side'], 'price' : line['price'], 'quantity' : line['executedQty'], 'time': time_short}
                     processed_history.append(hist)
                     i += 1
                 return processed_history
