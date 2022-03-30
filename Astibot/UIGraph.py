@@ -848,7 +848,7 @@ class UIGraph():
     def UIGR_updateTransactionHistory(self, transHistory):
         if transHistory != []:
             self.transactionHistory = transHistory
-            print('++++++', self.transactionHistory)
+            # print('++++++', self.transactionHistory)
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
         self.strEURBalance = str(EURBalance)
