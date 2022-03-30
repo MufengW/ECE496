@@ -70,7 +70,7 @@ class UIGraph():
 
     STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
     STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: bold 20px;}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
     STR_QLABEL_BALANCE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: bold 30px;}"
     STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #24b62e; font: bold 14px;}"
     STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: bold 14px;}"
@@ -83,8 +83,8 @@ class UIGraph():
     STR_QLABEL_CONNECTION_STATUS_STYLESHEET = "QLabel { background-color : #1f1f1f; color : green; font: 10px;}"
     STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
     STR_QLABEL_LIVE_DATA_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #334c6b; font: 10px;}"
-    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: bold 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid white;}"
-    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: bold 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid #1f1f1f;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid #1f1f1f;}"
+    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid white;}"
+    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid #1f1f1f;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid #1f1f1f;}"
     STR_QBUTTON_START_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
     STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: #1f1f1f; border-width: 1.5px; border-radius: 20px; border-color: white; font: bold 24px; color:white} QPushButton:pressed { background-color: #B0B0B0 } QPushButton:hover { background-color: #807E80 }"
     STR_QBUTTON_SETTINGS_DISABLED_STYLESHEET = "QPushButton {background-color: #303030; border-width: 1.5px; border-radius: 20px; border-color: #838fa7; font: bold 24px; color:white}"
@@ -685,13 +685,13 @@ class UIGraph():
 
         self.mainGridLayout.addWidget(self.FiatBlock, 1, 1)
         self.mainGridLayout.addWidget(self.CryptoBlock, 1, 2)
-        self.mainGridLayout.addLayout(self.StatsVBox, 1, 3, 1, 1, QtCore.Qt.AlignLeft)
+        self.mainGridLayout.addLayout(self.StatsVBox, 1, 3)
         self.ControlVBox = QtGui.QVBoxLayout()
         self.ControlVBox.addLayout(self.hBox1, QtCore.Qt.AlignLeft)
         self.ControlVBox.addLayout(self.vBoxSliders, QtCore.Qt.AlignLeft)
         self.mainGridLayout.addLayout(self.ControlVBox, 1, 4, QtCore.Qt.AlignLeft)
         
-        self.mainGridLayout.addLayout(self.historyVbox, 4, 4)
+        self.mainGridLayout.addLayout(self.historyVbox, 4, 4, QtCore.Qt.AlignCenter)
         self.mainGridLayout.addWidget(self.lblCurrentState, 8, 4, QtCore.Qt.AlignCenter)
         self.mainGridLayout.addWidget(self.lblInfo, 9, 4, QtCore.Qt.AlignCenter)
         
@@ -730,8 +730,13 @@ class UIGraph():
         self.plot1.setMouseEnabled(False, False) # Mettre False, True pour release
         self.plot1.setMenuEnabled(False)
         self.plot1.showGrid(x=False, y=True, alpha=0.2)
+        fontForTickValues = QtGui.QFont()
+        fontForTickValues.setPixelSize(20)
+        # fontForTickValues.setBold(True)
         axis = self.plot1.getAxis('bottom')  # This is the trick
-        axis.setStyle(textFillLimits = [(0, 0.7)])
+        axis.setStyle(textFillLimits = [(0, 0.7)], tickFont = fontForTickValues)
+        axis = self.plot1.getAxis('left')  # This is the trick
+        axis.setStyle(tickFont = fontForTickValues)
 
         # self.plot1.plotItem.vb.setBackgroundColor((15, 25, 34, 255))
         # self.plot2 = pg.PlotWidget(title='Astibot decision indicator (normalized)')
