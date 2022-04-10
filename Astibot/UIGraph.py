@@ -71,6 +71,10 @@ class UIGraph():
     STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
     STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
     STR_QLABEL_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
+    STR_QLABEL_STYLESHEET_BUY = "QLabel { background-color : #1f1f1f; color : green; font: 16px;}"
+    STR_QLABEL_STYLESHEET_SELL = "QLabel { background-color : #1f1f1f; color : red; font: 16px;}"
+    STR_QLABEL_STYLESHEET_NORMAL = "QLabel { background-color : #1f1f1f; color : white; font: 16px;}"
+
     STR_QLABEL_BALANCE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: bold 30px;}"
     STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #24b62e; font: bold 14px;}"
     STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: bold 14px;}"
@@ -665,11 +669,11 @@ class UIGraph():
         self.lblLast1TransPrice.setFixedWidth(110)
         self.lblLast1TransAmount.setFixedWidth(110)
         self.lblLast1TransTime.setFixedWidth(130)
-        self.lblLast1TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast1TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast1TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast1TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast1TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast1TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast1TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast1TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
         self.row1Hbox.addWidget(self.lblLast1TransTradePair, QtCore.Qt.AlignLeft)
         self.row1Hbox.addWidget(self.lblLast1TransOperation, QtCore.Qt.AlignLeft)
         self.row1Hbox.addWidget(self.lblLast1TransPrice, QtCore.Qt.AlignLeft)
@@ -689,11 +693,11 @@ class UIGraph():
         self.lblLast2TransPrice.setFixedWidth(110)
         self.lblLast2TransAmount.setFixedWidth(110)
         self.lblLast2TransTime.setFixedWidth(130)
-        self.lblLast2TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast2TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast2TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast2TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast2TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast2TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast2TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast2TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row2Hbox.addWidget(self.lblLast2TransTradePair, QtCore.Qt.AlignLeft)
         self.row2Hbox.addWidget(self.lblLast2TransOperation, QtCore.Qt.AlignLeft)
         self.row2Hbox.addWidget(self.lblLast2TransPrice, QtCore.Qt.AlignLeft)
@@ -713,11 +717,11 @@ class UIGraph():
         self.lblLast3TransAmount.setFixedWidth(110)
         self.lblLast3TransTradePair.setFixedWidth(110)
         self.lblLast3TransTime.setFixedWidth(130)
-        self.lblLast3TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast3TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast3TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast3TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast3TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast3TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast3TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast3TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row3Hbox.addWidget(self.lblLast3TransTradePair, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransOperation, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransPrice, QtCore.Qt.AlignLeft)
@@ -737,11 +741,11 @@ class UIGraph():
         self.lblLast4TransPrice.setFixedWidth(110)
         self.lblLast4TransAmount.setFixedWidth(110)
         self.lblLast4TransTime.setFixedWidth(130)
-        self.lblLast4TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast4TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast4TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast4TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast4TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast4TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast4TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast4TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row4Hbox.addWidget(self.lblLast4TransTradePair, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransOperation, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransPrice, QtCore.Qt.AlignLeft)
@@ -761,11 +765,11 @@ class UIGraph():
         self.lblLast5TransPrice.setFixedWidth(110)
         self.lblLast5TransAmount.setFixedWidth(110)
         self.lblLast5TransTime.setFixedWidth(130)
-        self.lblLast5TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast5TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast5TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast5TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast5TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast5TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast5TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast5TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row5Hbox.addWidget(self.lblLast5TransTradePair, QtCore.Qt.AlignLeft)
         self.row5Hbox.addWidget(self.lblLast5TransOperation, QtCore.Qt.AlignLeft)
         self.row5Hbox.addWidget(self.lblLast5TransPrice, QtCore.Qt.AlignLeft)
@@ -785,11 +789,11 @@ class UIGraph():
         self.lblLast6TransPrice.setFixedWidth(110)
         self.lblLast6TransAmount.setFixedWidth(110)
         self.lblLast6TransTime.setFixedWidth(130)
-        self.lblLast6TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast6TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast6TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast6TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast6TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast6TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast6TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast6TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row6Hbox.addWidget(self.lblLast6TransTradePair, QtCore.Qt.AlignLeft)
         self.row6Hbox.addWidget(self.lblLast6TransOperation, QtCore.Qt.AlignLeft)
         self.row6Hbox.addWidget(self.lblLast6TransPrice, QtCore.Qt.AlignLeft)
@@ -809,11 +813,11 @@ class UIGraph():
         self.lblLast7TransPrice.setFixedWidth(110)
         self.lblLast7TransAmount.setFixedWidth(110)
         self.lblLast7TransTime.setFixedWidth(130)
-        self.lblLast7TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast7TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast7TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblLast7TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblLast7TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast7TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast7TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast7TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.row7Hbox.addWidget(self.lblLast7TransTradePair, QtCore.Qt.AlignLeft)
         self.row7Hbox.addWidget(self.lblLast7TransOperation, QtCore.Qt.AlignLeft)
         self.row7Hbox.addWidget(self.lblLast7TransPrice, QtCore.Qt.AlignLeft)
@@ -1095,6 +1099,11 @@ class UIGraph():
             self.lblLast1TransPrice.setText(self.transactionHistory[-1]["price"])
             self.lblLast1TransAmount.setText(self.transactionHistory[-1]["quantity"])
             self.lblLast1TransTime.setText(self.transactionHistory[-1]["time"])
+            if (self.transactionHistory[-1]["side"] == "BUY"):
+                self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 2:
                 return
             # row 2
@@ -1103,6 +1112,11 @@ class UIGraph():
             self.lblLast2TransPrice.setText(self.transactionHistory[-2]["price"])
             self.lblLast2TransAmount.setText(self.transactionHistory[-2]["quantity"])
             self.lblLast2TransTime.setText(self.transactionHistory[-2]["time"])
+            if (self.transactionHistory[-2]["side"] == "BUY"):
+                self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 3:
                 return
             # row 3
@@ -1111,6 +1125,11 @@ class UIGraph():
             self.lblLast3TransPrice.setText(self.transactionHistory[-3]["price"])
             self.lblLast3TransAmount.setText(self.transactionHistory[-3]["quantity"])
             self.lblLast3TransTime.setText(self.transactionHistory[-3]["time"])
+            if (self.transactionHistory[-3]["side"] == "BUY"):
+                self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 4:
                 return
             # row 4
@@ -1119,6 +1138,11 @@ class UIGraph():
             self.lblLast4TransPrice.setText(self.transactionHistory[-4]["price"])
             self.lblLast4TransAmount.setText(self.transactionHistory[-4]["quantity"])
             self.lblLast4TransTime.setText(self.transactionHistory[-4]["time"])
+            if (self.transactionHistory[-4]["side"] == "BUY"):
+                self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 5:
                 return
             # row 5
@@ -1127,6 +1151,11 @@ class UIGraph():
             self.lblLast5TransPrice.setText(self.transactionHistory[-5]["price"])
             self.lblLast5TransAmount.setText(self.transactionHistory[-5]["quantity"])
             self.lblLast5TransTime.setText(self.transactionHistory[-5]["time"])
+            if (self.transactionHistory[-5]["side"] == "BUY"):
+                self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 6:
                 return
             # row 6
@@ -1135,6 +1164,11 @@ class UIGraph():
             self.lblLast6TransPrice.setText(self.transactionHistory[-6]["price"])
             self.lblLast6TransAmount.setText(self.transactionHistory[-6]["quantity"])
             self.lblLast6TransTime.setText(self.transactionHistory[-6]["time"])
+            if (self.transactionHistory[-6]["side"] == "BUY"):
+                self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
+
             if Hist_length < 7:
                 return
             # row 7
@@ -1143,6 +1177,10 @@ class UIGraph():
             self.lblLast7TransPrice.setText(self.transactionHistory[-7]["price"])
             self.lblLast7TransAmount.setText(self.transactionHistory[-7]["quantity"])
             self.lblLast7TransTime.setText(self.transactionHistory[-7]["time"])
+            if (self.transactionHistory[-7]["side"] == "BUY"):
+                self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_BUY)
+            else:
+                self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
         self.strEURBalance = str(EURBalance)

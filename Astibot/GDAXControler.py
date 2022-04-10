@@ -199,8 +199,8 @@ class GDAXControler():
                 local_tz = get_localzone()
                 i = 0
                 for line in rawHistory:
-                    if i > 6:
-                        break
+                    # if i > 6:
+                    #     break
                     time = line['time']
                     ISO_time = datetime.fromtimestamp(time/1000, local_tz).isoformat()
                     time_short = datetime.fromtimestamp(time/1000, local_tz).strftime("%b %d, %H:%M")
