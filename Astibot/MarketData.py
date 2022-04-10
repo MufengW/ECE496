@@ -131,7 +131,12 @@ class MarketData():
 
                 # UI Data Update
                 if (self.totalNbIterations % self.UIGraphSubScheduling == 0):
-                    self.theUIGraph.UIGR_updateNextIterationData(self.dataRefTime[-1], self.dataRefCryptoPriceInEUR[-1], self.dataRefSmoothAverageFast[-1], self.dataRefSmoothAverageSlow[-1], self.dataRefRiskLine[-1], self.dataRefMACD[-1])
+                    self.theUIGraph.UIGR_updateNextIterationData(self.dataRefTime[-1],
+                                                                 self.dataRefCryptoPriceInEUR[-1],
+                                                                 self.dataRefSmoothAverageFast[-1],
+                                                                 self.dataRefSmoothAverageSlow[-1],
+                                                                 self.dataRefRiskLine[-1],
+                                                                 self.dataRefMACD[-1])
 
                 if (self.totalNbIterations % 20 == 0):
                     # Update Smooth filters coefficients if needed. Check value changed in subscheduled part to save CPU

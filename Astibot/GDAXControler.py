@@ -209,6 +209,8 @@ class GDAXControler():
                         line['price'] = response[0]['p']
                     hist = {'symbol': line['symbol'], 'side': line['side'], 'price': str(float(line['price'])), 'quantity' : str(float(line['executedQty'])), 'time': time_short}
                     processed_history.append(hist)
+                    op = 1 if hist['side'] == 'BUY' else 2
+                    self.theUIGraph.UIGR_addMarker(op)
                     i += 1
                 return processed_history
             except BaseException as e:

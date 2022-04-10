@@ -904,9 +904,9 @@ class UIGraph():
         self.strPlot1Title = str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + ' Market Overview (' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + ')'
         self.plot1 = pg.PlotWidget(title=self.strPlot1Title, axisItems={'bottom': TimeAxisItem(orientation='bottom')})
         self.plot1.setYRange(self.minInPlot1, self.maxInPlot1)
-        self.plot1.setMouseEnabled(False, False) # Mettre False, True pour release
+        self.plot1.setMouseEnabled(True, True) # Mettre False, True pour release
         self.plot1.setMenuEnabled(False)
-        self.plot1.showGrid(x=False, y=True, alpha=0.2)
+        self.plot1.showGrid(x=True, y=True, alpha=0.2)
         fontForTickValues = QtGui.QFont()
         fontForTickValues.setPixelSize(20)
         # fontForTickValues.setBold(True)
@@ -936,8 +936,8 @@ class UIGraph():
         # self.plot1GraphSmoothPriceSlow.setPen(color=(230,79,6), width=2)        
         # self.plot1GraphRiskLine = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine, name='    Risk Line')
         # self.plot1GraphRiskLine.setPen(color=(255,46,46), width=2, style=QtCore.Qt.DotLine)
-        self.plot1Markers1 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1, name='      Buy', pen=None, symbol='o', symbolPen=(43, 206, 55), symbolBrush=(43, 206, 55), symbolSize = 30)
-        self.plot1Markers2 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2, name='      Sell', pen=None, symbol='o', symbolPen=(255, 0, 0), symbolBrush=(255, 0, 0), symbolSize = 30)
+        self.plot1Markers1 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1, name='      Buy', pen=None, symbol='o', symbolPen=(0, 255, 0), symbolBrush=(0, 255, 0), symbolSize = 3)
+        self.plot1Markers2 = self.plot1.plot(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2, name='      Sell', pen=None, symbol='o', symbolPen=(255, 0, 0), symbolBrush=(255, 0, 0), symbolSize = 3)
 
         # Graph 2 (Indicators) curves initialization
         # self.plot2GraphIndicatorMACD = self.plot2.plot(x=self.graphDataTime, y=self.graphDataIndicatorMACD, pen='y', name='     MACD')
@@ -1015,8 +1015,8 @@ class UIGraph():
         self.plot1GraphLivePrice.setData(x=self.graphDataTime, y=self.graphDataBitcoinPrice)
         # self.plot1GraphSmoothPriceFast.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast)
         # self.plot1GraphSmoothPriceSlow.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow)
-        self.plot1Markers1.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1)
-        self.plot1Markers2.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2)
+        self.plot1Markers1.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1)  # buy
+        self.plot1Markers2.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2)  # sell
         # self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
         # self.plot2GraphIndicatorMACD.setData(x=self.graphDataTime, y=self.graphDataIndicatorMACD, fillLevel=0, brush=(255, 243, 20, 80))
         # Update Y avis scale in live market mode
@@ -1090,59 +1090,59 @@ class UIGraph():
             Hist_length = len(transHistory)
             # updating each row
             # row 1
-            self.lblLast1TransTradePair.setText(self.transactionHistory[0]["symbol"])
-            self.lblLast1TransOperation.setText(self.transactionHistory[0]["side"])
-            self.lblLast1TransPrice.setText(self.transactionHistory[0]["price"])
-            self.lblLast1TransAmount.setText(self.transactionHistory[0]["quantity"])
-            self.lblLast1TransTime.setText(self.transactionHistory[0]["time"])
+            self.lblLast1TransTradePair.setText(self.transactionHistory[-1]["symbol"])
+            self.lblLast1TransOperation.setText(self.transactionHistory[-1]["side"])
+            self.lblLast1TransPrice.setText(self.transactionHistory[-1]["price"])
+            self.lblLast1TransAmount.setText(self.transactionHistory[-1]["quantity"])
+            self.lblLast1TransTime.setText(self.transactionHistory[-1]["time"])
             if Hist_length < 2:
                 return
             # row 2
-            self.lblLast2TransTradePair.setText(self.transactionHistory[1]["symbol"])
-            self.lblLast2TransOperation.setText(self.transactionHistory[1]["side"])
-            self.lblLast2TransPrice.setText(self.transactionHistory[1]["price"])
-            self.lblLast2TransAmount.setText(self.transactionHistory[1]["quantity"])
-            self.lblLast2TransTime.setText(self.transactionHistory[1]["time"])
+            self.lblLast2TransTradePair.setText(self.transactionHistory[-2]["symbol"])
+            self.lblLast2TransOperation.setText(self.transactionHistory[-2]["side"])
+            self.lblLast2TransPrice.setText(self.transactionHistory[-2]["price"])
+            self.lblLast2TransAmount.setText(self.transactionHistory[-2]["quantity"])
+            self.lblLast2TransTime.setText(self.transactionHistory[-2]["time"])
             if Hist_length < 3:
                 return
             # row 3
-            self.lblLast3TransTradePair.setText(self.transactionHistory[2]["symbol"])
-            self.lblLast3TransOperation.setText(self.transactionHistory[2]["side"])
-            self.lblLast3TransPrice.setText(self.transactionHistory[2]["price"])
-            self.lblLast3TransAmount.setText(self.transactionHistory[2]["quantity"])
-            self.lblLast3TransTime.setText(self.transactionHistory[2]["time"])
+            self.lblLast3TransTradePair.setText(self.transactionHistory[-3]["symbol"])
+            self.lblLast3TransOperation.setText(self.transactionHistory[-3]["side"])
+            self.lblLast3TransPrice.setText(self.transactionHistory[-3]["price"])
+            self.lblLast3TransAmount.setText(self.transactionHistory[-3]["quantity"])
+            self.lblLast3TransTime.setText(self.transactionHistory[-3]["time"])
             if Hist_length < 4:
                 return
             # row 4
-            self.lblLast4TransTradePair.setText(self.transactionHistory[3]["symbol"])
-            self.lblLast4TransOperation.setText(self.transactionHistory[3]["side"])
-            self.lblLast4TransPrice.setText(self.transactionHistory[3]["price"])
-            self.lblLast4TransAmount.setText(self.transactionHistory[3]["quantity"])
-            self.lblLast4TransTime.setText(self.transactionHistory[3]["time"])
+            self.lblLast4TransTradePair.setText(self.transactionHistory[-4]["symbol"])
+            self.lblLast4TransOperation.setText(self.transactionHistory[-4]["side"])
+            self.lblLast4TransPrice.setText(self.transactionHistory[-4]["price"])
+            self.lblLast4TransAmount.setText(self.transactionHistory[-4]["quantity"])
+            self.lblLast4TransTime.setText(self.transactionHistory[-4]["time"])
             if Hist_length < 5:
                 return
             # row 5
-            self.lblLast5TransTradePair.setText(self.transactionHistory[4]["symbol"])
-            self.lblLast5TransOperation.setText(self.transactionHistory[4]["side"])
-            self.lblLast5TransPrice.setText(self.transactionHistory[4]["price"])
-            self.lblLast5TransAmount.setText(self.transactionHistory[4]["quantity"])
-            self.lblLast5TransTime.setText(self.transactionHistory[4]["time"])
+            self.lblLast5TransTradePair.setText(self.transactionHistory[-5]["symbol"])
+            self.lblLast5TransOperation.setText(self.transactionHistory[-5]["side"])
+            self.lblLast5TransPrice.setText(self.transactionHistory[-5]["price"])
+            self.lblLast5TransAmount.setText(self.transactionHistory[-5]["quantity"])
+            self.lblLast5TransTime.setText(self.transactionHistory[-5]["time"])
             if Hist_length < 6:
                 return
             # row 6
-            self.lblLast6TransTradePair.setText(self.transactionHistory[5]["symbol"])
-            self.lblLast6TransOperation.setText(self.transactionHistory[5]["side"])
-            self.lblLast6TransPrice.setText(self.transactionHistory[5]["price"])
-            self.lblLast6TransAmount.setText(self.transactionHistory[5]["quantity"])
-            self.lblLast6TransTime.setText(self.transactionHistory[5]["time"])
+            self.lblLast6TransTradePair.setText(self.transactionHistory[-6]["symbol"])
+            self.lblLast6TransOperation.setText(self.transactionHistory[-6]["side"])
+            self.lblLast6TransPrice.setText(self.transactionHistory[-6]["price"])
+            self.lblLast6TransAmount.setText(self.transactionHistory[-6]["quantity"])
+            self.lblLast6TransTime.setText(self.transactionHistory[-6]["time"])
             if Hist_length < 7:
                 return
             # row 7
-            self.lblLast7TransTradePair.setText(self.transactionHistory[6]["symbol"])
-            self.lblLast7TransOperation.setText(self.transactionHistory[6]["side"])
-            self.lblLast7TransPrice.setText(self.transactionHistory[6]["price"])
-            self.lblLast7TransAmount.setText(self.transactionHistory[6]["quantity"])
-            self.lblLast7TransTime.setText(self.transactionHistory[6]["time"])
+            self.lblLast7TransTradePair.setText(self.transactionHistory[-7]["symbol"])
+            self.lblLast7TransOperation.setText(self.transactionHistory[-7]["side"])
+            self.lblLast7TransPrice.setText(self.transactionHistory[-7]["price"])
+            self.lblLast7TransAmount.setText(self.transactionHistory[-7]["quantity"])
+            self.lblLast7TransTime.setText(self.transactionHistory[-7]["time"])
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
         self.strEURBalance = str(EURBalance)
@@ -1309,7 +1309,7 @@ class UIGraph():
     # 1 => Buy marker
     # 2 => Sell marker
     # This function needs to be called after UIGR_updateNextIterationData to avoid the markers to be overwritten
-    def UIGR_addMarker(self, markerNumber):
+    def UIGR_addMarker(self, markerNumber, timestamp=0, price=0):
         print("UIGR - Marker added at %s" % self.graphDataBitcoinPrice[-1])
         if (markerNumber == 1):
             # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
