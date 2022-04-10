@@ -173,10 +173,15 @@ class GDAXControler():
             "quantity": 0.01,
             # "price": 0,
         }
-        # for i in range(3):
-        #     self.clientAuth.new_order(**params)
-        #     print(self.transactionHistory)
-        #     time.sleep(0.1)
+        for i in range(3):
+            rand_num = int(time.time()) % 2
+            if rand_num:
+                params["side"] = "SELL"
+            else:
+                params["side"] = "BUY"
+            self.clientAuth.new_order(**params)
+            print(self.transactionHistory)
+            time.sleep(0.1)
 
     def GDAX_NotifyThatTradingPairHasChanged(self):
         self.productStr = self.theSettings.SETT_GetSettings()["strTradingPair"]
@@ -199,7 +204,10 @@ class GDAXControler():
                     time = line['time']
                     ISO_time = datetime.fromtimestamp(time/1000, local_tz).isoformat()
                     time_short = datetime.fromtimestamp(time/1000, local_tz).strftime("%b %d, %H:%M")
-                    hist = {'symbol': line['symbol'], 'side': line['side'], 'price' : line['price'], 'quantity' : line['executedQty'], 'time': time_short}
+                    if float(line['price']) == 0:
+                        response = self.clientAuth.agg_trades(symbol=line['symbol'], limit=1, startTime=line['time']-100, endTime=line['time']+100)
+                        line['price'] = response[0]['p']
+                    hist = {'symbol': line['symbol'], 'side': line['side'], 'price': str(float(line['price'])), 'quantity' : str(float(line['executedQty'])), 'time': time_short}
                     processed_history.append(hist)
                     i += 1
                 return processed_history

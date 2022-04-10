@@ -1087,6 +1087,7 @@ class UIGraph():
     def UIGR_updateTransactionHistory(self, transHistory):
         if transHistory != []:
             self.transactionHistory = transHistory
+            Hist_length = len(transHistory)
             # updating each row
             # row 1
             self.lblLast1TransTradePair.setText(self.transactionHistory[0]["symbol"])
@@ -1094,36 +1095,48 @@ class UIGraph():
             self.lblLast1TransPrice.setText(self.transactionHistory[0]["price"])
             self.lblLast1TransAmount.setText(self.transactionHistory[0]["quantity"])
             self.lblLast1TransTime.setText(self.transactionHistory[0]["time"])
+            if Hist_length < 2:
+                return
             # row 2
             self.lblLast2TransTradePair.setText(self.transactionHistory[1]["symbol"])
             self.lblLast2TransOperation.setText(self.transactionHistory[1]["side"])
             self.lblLast2TransPrice.setText(self.transactionHistory[1]["price"])
             self.lblLast2TransAmount.setText(self.transactionHistory[1]["quantity"])
             self.lblLast2TransTime.setText(self.transactionHistory[1]["time"])
+            if Hist_length < 3:
+                return
             # row 3
             self.lblLast3TransTradePair.setText(self.transactionHistory[2]["symbol"])
             self.lblLast3TransOperation.setText(self.transactionHistory[2]["side"])
             self.lblLast3TransPrice.setText(self.transactionHistory[2]["price"])
             self.lblLast3TransAmount.setText(self.transactionHistory[2]["quantity"])
             self.lblLast3TransTime.setText(self.transactionHistory[2]["time"])
+            if Hist_length < 4:
+                return
             # row 4
             self.lblLast4TransTradePair.setText(self.transactionHistory[3]["symbol"])
             self.lblLast4TransOperation.setText(self.transactionHistory[3]["side"])
             self.lblLast4TransPrice.setText(self.transactionHistory[3]["price"])
             self.lblLast4TransAmount.setText(self.transactionHistory[3]["quantity"])
             self.lblLast4TransTime.setText(self.transactionHistory[3]["time"])
+            if Hist_length < 5:
+                return
             # row 5
             self.lblLast5TransTradePair.setText(self.transactionHistory[4]["symbol"])
             self.lblLast5TransOperation.setText(self.transactionHistory[4]["side"])
             self.lblLast5TransPrice.setText(self.transactionHistory[4]["price"])
             self.lblLast5TransAmount.setText(self.transactionHistory[4]["quantity"])
             self.lblLast5TransTime.setText(self.transactionHistory[4]["time"])
+            if Hist_length < 6:
+                return
             # row 6
             self.lblLast6TransTradePair.setText(self.transactionHistory[5]["symbol"])
             self.lblLast6TransOperation.setText(self.transactionHistory[5]["side"])
             self.lblLast6TransPrice.setText(self.transactionHistory[5]["price"])
             self.lblLast6TransAmount.setText(self.transactionHistory[5]["quantity"])
             self.lblLast6TransTime.setText(self.transactionHistory[5]["time"])
+            if Hist_length < 7:
+                return
             # row 7
             self.lblLast7TransTradePair.setText(self.transactionHistory[6]["symbol"])
             self.lblLast7TransOperation.setText(self.transactionHistory[6]["side"])
