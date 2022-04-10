@@ -1310,8 +1310,10 @@ class UIGraph():
     # 2 => Sell marker
     # This function needs to be called after UIGR_updateNextIterationData to avoid the markers to be overwritten
     def UIGR_addMarker(self, op, timestamp, price):
-        time = round(timestamp/1000/10) * 10
-        time_idx = int((time - self.graphDataTime[0]) / 10 - 1)
+        time_ = round(timestamp/1000/10) * 10
+        while(self.graphDataTime[0] == 0):
+            time.sleep(0)
+        time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
         markerNumber = 1 if op == 'BUY' else 2
         print("UIGR - Marker added at %s" % price)
         if (markerNumber == 1):

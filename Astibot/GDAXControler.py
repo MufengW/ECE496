@@ -218,7 +218,7 @@ class GDAXControler():
                 return 0
         else:
             print("GDAX - Does not exist")
-            return 0
+            return []
 
     # Returns the Available fiat balance (ie. money that can be used and that is not held for any pending order)
     def GDAX_GetFiatAccountBalance(self):

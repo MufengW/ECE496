@@ -125,6 +125,7 @@ class InputDataHandler(object):
                     currentTimeStamp = currentTimeStamp + timeStep
                     self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
             # self.theMarketData.MRKT_updateMarketData(currentTimeStamp, self.retrievedPrice)
+            self.theGDAXControler.GDAX_GetTransactionHistory()
             self.theUIGraph.UIGR_updateGraphs()
             self.theUIGraph.UIGR_performManualYRangeRefresh()
 
