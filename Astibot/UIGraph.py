@@ -90,6 +90,7 @@ class UIGraph():
     STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid white;}"
     STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : #1f1f1f; color : white; font: 20px;} QRadioButton::indicator:checked {background-color: #61368E; border: 1px solid #1f1f1f;} QRadioButton::indicator:unchecked {background-color: #1f1f1f; border: 1px solid #1f1f1f;}"
     STR_QBUTTON_START_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
+    STR_QBUTTON_EMPTY_STYLESHEET = "QPushButton {background-color: #1f1f1f; border-color: #1f1f1f} QPushButton:pressed { background-color: #1f1f1f }"
     STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: #1f1f1f; border-width: 1.5px; border-radius: 20px; border-color: white; font: bold 24px; color:white} QPushButton:pressed { background-color: #B0B0B0 } QPushButton:hover { background-color: #807E80 }"
     STR_QBUTTON_SETTINGS_DISABLED_STYLESHEET = "QPushButton {background-color: #303030; border-width: 1.5px; border-radius: 20px; border-color: #838fa7; font: bold 24px; color:white}"
     STR_QBUTTON_START_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white}"
@@ -186,7 +187,9 @@ class UIGraph():
 
         # Set child UIs to clickable label that can open them
         # self.lblInfo.SetUIs(self.theUISettings, self.theUIDonation) 
-        self.lblInfo.SetUIs(self.theUISettings) 
+        self.lblInfo.SetUIs(self.theUISettings)
+
+        self.initial_value = 0
 
         print("UIGR - UIGraph init done!")
 
@@ -257,6 +260,7 @@ class UIGraph():
             return False
 
     def EventStartButtonClick(self):
+        self.initial_value = float(self.strEURBalance) + float(self.strCryptoBalance) * float(self.priceLabelStr)
         self.bStartButtonHasBeenClicked = True
 
     def EventPauseButtonClick(self):
@@ -493,17 +497,21 @@ class UIGraph():
         self.buttonStart = ButtonHoverStart(self.lblToolTip, self.STR_BUTTON_START)
         self.buttonStart.setVisible(True)
         self.buttonStart.clicked.connect(self.EventStartButtonClick)
-        # self.buttonStart.setFixedWidth(80)
+        self.buttonStart.setFixedWidth(80)
         self.buttonStart.setFixedHeight(60)
         self.buttonStart.setStyleSheet(self.STR_QBUTTON_START_STYLESHEET)   
         self.buttonStart.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+        self.empty = QtGui.QWidget()
+        self.empty.setStyleSheet(self.STR_BORDER_BLOCK_STYLESHEET)
+        self.empty.setFixedWidth(120)
+
         self.vBoxRootButtons.addWidget(self.buttonSettings, QtCore.Qt.AlignRight)
         # self.vBoxRootButtons.addWidget(self.buttonDonation, QtCore.Qt.AlignRight)
         # self.vBoxRootButtons.addWidget(self.buttonInfo, QtCore.Qt.AlignRight)
-        self.vBoxRadioModeButtons.addWidget(self.radioButtonSimulation)
-        self.vBoxRadioModeButtons.addWidget(self.radioButtonTrading)
-        self.hBox1.addLayout(self.vBoxRadioModeButtons)
+        # self.vBoxRadioModeButtons.addWidget(self.radioButtonSimulation)
+        # self.vBoxRadioModeButtons.addWidget(self.empty)
+        self.hBox1.addWidget(self.empty)
         self.hBox1.addWidget(self.buttonPause)
         self.hBox1.addWidget(self.buttonStart)
         self.hBox1.addLayout(self.vBoxRootButtons)
@@ -551,16 +559,16 @@ class UIGraph():
         # self.sliderSensitivityLevel.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
 
         # self.vBoxSliders.addLayout(self.hBoxSliders2, QtCore.Qt.AlignLeft)
-        self.hBoxSliders1.addWidget(self.lblRiskLevelSlider1, QtCore.Qt.AlignLeft)
-        self.hBoxSliders1.addWidget(self.lblRiskLevelSlider2)
-        self.hBoxSliders1.addWidget(self.sliderRiskLevel)
-        self.hBoxSliders1.addWidget(self.lblRiskLevelSlider3)
+        # self.hBoxSliders1.addWidget(self.lblRiskLevelSlider1, QtCore.Qt.AlignLeft)
+        # self.hBoxSliders1.addWidget(self.lblRiskLevelSlider2)
+        # self.hBoxSliders1.addWidget(self.sliderRiskLevel)
+        # self.hBoxSliders1.addWidget(self.lblRiskLevelSlider3)
         # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider1, QtCore.Qt.AlignLeft)
         # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider2)
         # self.hBoxSliders2.addWidget(self.sliderSensitivityLevel)
         # self.hBoxSliders2.addWidget(self.lblSensitivityLevelSlider3)
 
-        self.vBoxSliders.addLayout(self.hBoxSliders1, QtCore.Qt.AlignLeft)
+        # self.vBoxSliders.addLayout(self.hBoxSliders1, QtCore.Qt.AlignLeft)
         
         # Part 2
         self.StatsVBox = QtGui.QVBoxLayout()
@@ -842,9 +850,10 @@ class UIGraph():
         self.lblCurrentState = QtGui.QLabel(self.STR_LABEL_CURRENT_STATE)
         self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblCurrentState.setWordWrap(True);
+        self.lblCurrentState.setFixedHeight(60)
         # self.lblCurrentState.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
         self.lblInfo = LabelClickable(self.STR_LABEL_INFO)
-        # self.lblInfo.setFixedHeight(42)
+        self.lblInfo.setFixedHeight(60)
         self.lblInfo.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblInfo.setWordWrap(True);
         # self.lblInfo.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
@@ -1015,7 +1024,10 @@ class UIGraph():
 
 
     def UIGR_updateGraphs(self):
-
+        if not self.initial_value == 0:
+            self.realProfit = float(self.strEURBalance) + float(self.strCryptoBalance) * float(self.priceLabelStr) - self.initial_value
+            self.percentageProfit = self.realProfit / self.initial_value * 100
+            self.UIGR_updateTotalProfit(round(self.realProfit, 2), 0, round(self.percentageProfit, 4), False)
         self.plot1GraphLivePrice.setData(x=self.graphDataTime, y=self.graphDataBitcoinPrice)
         # self.plot1GraphSmoothPriceFast.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast)
         # self.plot1GraphSmoothPriceSlow.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow)
@@ -1353,7 +1365,7 @@ class UIGraph():
             time.sleep(0)
         time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
         markerNumber = 1 if op == 'BUY' else 2
-        print("UIGR - Marker added at %s" % price)
+        # print("UIGR - Marker added at %s" % price)
         if (markerNumber == 1):
             # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
             self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]

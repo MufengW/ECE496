@@ -215,7 +215,7 @@ class GDAXControler():
             except BaseException as e:
                 print("error", e)
                 print("GDAX - Error retrieving transaction history")
-                return 0
+                return []
         else:
             print("GDAX - Does not exist")
             return []

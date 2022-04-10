@@ -12,7 +12,7 @@ class UIDonation(QtGui.QWidget):
     STR_CHECKBOX_AUTHORIZATION_TEXT = "I accept to give the present software a full control of my account through the Application Programming Interface. It includes algorithm-based buying or selling of fiat or cryptocurrency money / assets. I understand the risks related to software-based trading and, by entering here my personal API keys access, I am the only responsible for the totality of every action that is performed by this software through the API system even in case of bug, undesired software behavior, unfavorable market, inappropriate buy or sell decision. I have trained myself in Simulation mode to understand the Software trading strategy and, by entering my API keys, I only give control to money / assets that I can afford to loose."
 
     STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 13px;}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 10px;}"
     STR_QLABEL_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #24b62e; font: bold 14px;}"
     STR_QLABEL_RED_STYLESHEET = "QLabel { background-color : #203044; color : #ff2e2e; font: bold 14px;}"
     STR_QLABEL_SMALL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 11px;}"
