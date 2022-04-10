@@ -164,7 +164,7 @@ class GDAXControler():
             # Display error message
             self.theUIGraph.UIGR_updateInfoText(
                 "Connection to Coinbase Pro server failed. Check your internet connection.", True)
-    #     DEBUG !!! Test order placing
+    #   DEBUG !!! Test order placing
         params = {
             "symbol": 'BTCUSDT',
             "side": "SELL",
@@ -173,15 +173,14 @@ class GDAXControler():
             "quantity": 0.01,
             # "price": 0,
         }
-        for i in range(3):
-            rand_num = int(time.time()) % 2
-            if rand_num:
-                params["side"] = "SELL"
-            else:
-                params["side"] = "BUY"
-            self.clientAuth.new_order(**params)
-            print(self.transactionHistory)
-            time.sleep(0.1)
+        rand_num = int(time.time()) % 2
+        if rand_num:
+            params["side"] = "SELL"
+        else:
+            params["side"] = "BUY"
+        self.clientAuth.new_order(**params)
+        print(self.transactionHistory)
+        time.sleep(0.1)
 
     def GDAX_NotifyThatTradingPairHasChanged(self):
         self.productStr = self.theSettings.SETT_GetSettings()["strTradingPair"]
@@ -668,9 +667,13 @@ class GDAXControler():
                 # Prepare the right amount to buy precision. Smallest GDAX unit is 0.00000001
                 amountToBuyInBTC = round(amountToBuyInBTC, 8)
 
-                # Send Market order
-                buyRequestReturn = self.clientAuth.buy(size=amountToBuyInBTC, product_id=self.productStr,
-                                                       order_type='market')
+                params = {
+                    "symbol": 'BTCUSDT',
+                    "side": "BUY",
+                    "type": "MARKET",
+                    "quantity": amountToBuyInBTC,
+                }
+                buyRequestReturn = self.clientAuth.new_order(**params)
                 print("GDAX - Actual buy sent with MARKET order. Amount is %s BTC"
                       % amountToBuyInBTC)
 
@@ -696,18 +699,26 @@ class GDAXControler():
             if theConfig.CONFIG_ENABLE_REAL_TRANSACTIONS:
                 # Prepare the right amount to sell precision. Smallest GDAX unit is 0.00000001
                 amountToSellInBTC = round(amountToSellInBTC, 8)
+                params = {
+                    "symbol": 'BTCUSDT',
+                    "side": "SELL",
+                    "type": "MARKET",
+                    "quantity": amountToSellInBTC,
+                }
 
                 # Send Market order
-                sellRequestReturn = self.clientAuth.sell(size=amountToSellInBTC, product_id=self.productStr,
-                                                         order_type='market')
+                sellRequestReturn = self.clientAuth.new_order(**params)
                 print("Actual sell sent with MARKET order. Amount is %s" % amountToSellInBTC)
 
                 print("GDAX - Sell Request return is : \n %s \nGDAX - End of Request Return"
                       % sellRequestReturn)
                 time.sleep(0.1)
+                self.refreshTransactionHistory()
+                time.sleep(0.1)
                 self.refreshAccounts()
                 time.sleep(0.1)
                 self.requestAccountsBalanceUpdate = True
+                self.theUIGraph.UIGR_updateTransactionHistory(self.GDAX_GetTransactionHistory())
 
                 # Check if order was successful or not depending on existence of an order ID in the request response
                 if 'id' in sellRequestReturn:

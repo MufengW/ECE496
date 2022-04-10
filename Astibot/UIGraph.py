@@ -78,11 +78,12 @@ class UIGraph():
     STR_QLABEL_BALANCE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: bold 30px;}"
     STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #24b62e; font: bold 14px;}"
     STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: bold 14px;}"
-    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #ff2e2e; font: bold 20px;}"
-    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
-    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: 20px;}"
-    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #29CF36; font: bold 20px; text-decoration: underline;}"
-    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF8000; font: bold 20px; text-decoration: underline;}"
+    STR_QLABEL_CURRENT_STATE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 14px;}"
+    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #ff2e2e; font: bold 15px;}"
+    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 10px;}"
+    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: 10px;}"
+    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #29CF36; font: bold 10px; text-decoration: underline;}"
+    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF8000; font: bold 10px; text-decoration: underline;}"
     STR_QLABEL_TOOLTIP_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 10px;}"
     STR_QLABEL_CONNECTION_STATUS_STYLESHEET = "QLabel { background-color : #1f1f1f; color : green; font: 10px;}"
     STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
@@ -1243,7 +1244,7 @@ class UIGraph():
         if (isLiveTrading == True):
             self.lblCurrentState.setStyleSheet(self.STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET)
         else:
-            self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+            self.lblCurrentState.setStyleSheet(self.STR_QLABEL_CURRENT_STATE_STYLESHEET)
 
     def UIGR_toogleStatus(self):
         self.lblCurrentState.setVisible(False);
@@ -1353,15 +1354,16 @@ class UIGraph():
             time.sleep(0)
         time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
         markerNumber = 1 if op == 'BUY' else 2
-        print("UIGR - Marker added at %s" % price)
-        if (markerNumber == 1):
-            # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
-            self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]
-            pass
-        elif (markerNumber == 2):
-            # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
-            self.graphDataBitcoinPriceMarker2[time_idx] = self.graphDataBitcoinPrice[time_idx]
-            pass
+        if time_idx < len(self.graphDataBitcoinPriceMarker1) or time_idx < len(self.graphDataBitcoinPriceMarker2):
+            print("UIGR - Marker added at %s" % price)
+            if (markerNumber == 1):
+                # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
+                self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]
+                pass
+            elif (markerNumber == 2):
+                # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
+                self.graphDataBitcoinPriceMarker2[time_idx] = self.graphDataBitcoinPrice[time_idx]
+                pass
 
     def UIGR_getRadioButtonSimulation(self):
         return self.radioButtonSimulation;
