@@ -610,7 +610,7 @@ class TransactionManager(object):
                 theNotifier.SendWhatsappMessage("*BUY filled* %s %s @ %s %s via limit order - Waiting for a sell opportunity above %s %s" % (round(self.currentBuyAmountInCryptoWithoutFee, 5), self.theSettings.SETT_GetSettings()["strCryptoType"], round(self.currentBuyInitialPriceInEUR, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(sellThreshold, 5), self.theSettings.SETT_GetSettings()["strFiatType"]))
 
                 # Order is totally filled, add marker
-                self.theUIGraph.UIGR_addMarker(1)
+                # self.theUIGraph.UIGR_addMarker(1)
             else:
                 self.theUIGraph.UIGR_updateInfoText("%s %s Partially bought @ %s %s. Still ongoing, waiting for next matches" % (round(self.currentBuyAmountInCryptoWithoutFee, 5), self.theSettings.SETT_GetSettings()["strCryptoType"], round(self.currentBuyInitialPriceInEUR, 5), self.theSettings.SETT_GetSettings()["strFiatType"]), False)
                 theNotifier.SendWhatsappMessage("*BUY match* %s %s @ %s %s. Still ongoing, waiting for next matches" % (round(self.currentBuyAmountInCryptoWithoutFee, 5), self.theSettings.SETT_GetSettings()["strCryptoType"], round(self.currentBuyInitialPriceInEUR, 5), self.theSettings.SETT_GetSettings()["strFiatType"]))
@@ -620,7 +620,7 @@ class TransactionManager(object):
             self.theUIGraph.UIGR_updateInfoText("%s - %s %s Bought @ %s %s - Waiting for a sell opportunity above %s %s" % (buyTimeStr, round(self.currentBuyAmountInCryptoWithoutFee, 5), self.theSettings.SETT_GetSettings()["strCryptoType"], round(self.currentBuyInitialPriceInEUR, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(sellThreshold, 5), self.theSettings.SETT_GetSettings()["strCryptoType"]), False)
             theNotifier.SendWhatsappMessage("*BUY* %s %s @ %s %s - Waiting for a sell opportunity above %s %s" % (round(self.currentBuyAmountInCryptoWithoutFee, 5), self.theSettings.SETT_GetSettings()["strCryptoType"], round(self.currentBuyInitialPriceInEUR, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(sellThreshold, 5), self.theSettings.SETT_GetSettings()["strFiatType"]))
 
-            self.theUIGraph.UIGR_addMarker(1)
+            # self.theUIGraph.UIGR_addMarker(1)
 
     def performSellDisplayActions(self, isLimitOrder, isStopLossSell, sellPriceInFiat, profitEstimationInFiat):
         sellTimeInTimestamp = time.time()
@@ -631,7 +631,7 @@ class TransactionManager(object):
                 self.theUIGraph.UIGR_updateInfoText("SELL filled at %s, profit was about %s EUR. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5)), False)
                 self.pendingNotificationToSend = ("*SELL filled* at %s %s, profit was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
                 # Order is totally filled, add marker
-                self.theUIGraph.UIGR_addMarker(2)
+                # self.theUIGraph.UIGR_addMarker(2)
             else:
                 self.theUIGraph.UIGR_updateInfoText("Partial sell at %s, profit was about %s EUR. Still ongoing, waiting for next matches" % (sellTimeStr, round(profitEstimationInFiat, 5)), False)
                 self.pendingNotificationToSend = ("*SELL match* at %s %s, profit was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
@@ -644,7 +644,7 @@ class TransactionManager(object):
                 self.pendingNotificationToSend = ("*STOPLOSS-SELL* at %s %s, loss was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
 
             # Add marker
-            self.theUIGraph.UIGR_addMarker(2)
+            # self.theUIGraph.UIGR_addMarker(2)
 
     def SimulateBuyOrderFilled(self):
         # Compute capability  ============================================================================

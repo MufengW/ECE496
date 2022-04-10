@@ -1309,15 +1309,18 @@ class UIGraph():
     # 1 => Buy marker
     # 2 => Sell marker
     # This function needs to be called after UIGR_updateNextIterationData to avoid the markers to be overwritten
-    def UIGR_addMarker(self, markerNumber, timestamp=0, price=0):
-        print("UIGR - Marker added at %s" % self.graphDataBitcoinPrice[-1])
+    def UIGR_addMarker(self, op, timestamp, price):
+        time = round(timestamp/1000/10) * 10
+        time_idx = int((time - self.graphDataTime[0]) / 10 - 1)
+        markerNumber = 1 if op == 'BUY' else 2
+        print("UIGR - Marker added at %s" % price)
         if (markerNumber == 1):
             # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
-            self.graphDataBitcoinPriceMarker1[-2] = self.graphDataBitcoinPrice[-1]
+            self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]
             pass
         elif (markerNumber == 2):
             # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
-            self.graphDataBitcoinPriceMarker2[-2] = self.graphDataBitcoinPrice[-1]
+            self.graphDataBitcoinPriceMarker2[time_idx] = self.graphDataBitcoinPrice[time_idx]
             pass
 
     def UIGR_getRadioButtonSimulation(self):
