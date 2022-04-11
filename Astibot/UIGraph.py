@@ -47,7 +47,7 @@ class TimeAxisItem(pg.AxisItem):
 
 class UIGraph():
 
-    MAIN_WINDOW_WIDTH_IN_PX = 1600
+    MAIN_WINDOW_WIDTH_IN_PX = 1200
     MAIN_WINDOW_HEIGHT_IN_PX = 900
 
     MAX_NB_POINTS_ON_PLOT = 2000
@@ -69,13 +69,15 @@ class UIGraph():
     STR_LABEL_TOTAL_GAINS = 'Total Profit : '
 
     STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
-    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
+    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : black;}"
+    STR_TRANS_BLOCK_STYLESHEET = "QWidget {background-color : #1f1f1f;}"
     STR_QLABEL_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 20px;}"
     STR_QLABEL_STYLESHEET_BUY = "QLabel { background-color : #1f1f1f; color : green; font: 16px;}"
     STR_QLABEL_STYLESHEET_SELL = "QLabel { background-color : #1f1f1f; color : red; font: 16px;}"
     STR_QLABEL_STYLESHEET_NORMAL = "QLabel { background-color : #1f1f1f; color : white; font: 16px;}"
 
-    STR_QLABEL_BALANCE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: bold 30px;}"
+    STR_QLABEL_BALANCE_STYLESHEET = "QLabel { background-color :black; color : white; font: bold 30px;}"
+    STR_TEXT_STYLESHEET = "QLabel { background-color : black; color : white; font: 20px;}"
     STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #24b62e; font: bold 14px;}"
     STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #1f1f1f; color : #FF2F2F; font: bold 14px;}"
     STR_QLABEL_CURRENT_STATE_STYLESHEET = "QLabel { background-color : #1f1f1f; color : white; font: 14px;}"
@@ -119,7 +121,7 @@ class UIGraph():
         self.theQtApp = QtApplication
         self.mainWidget = QtGui.QWidget()
         self.rootGrid = QtGui.QGridLayout() # for setting + info layout
-        self.mainWidget.setWindowTitle('Astibot')        
+        self.mainWidget.setWindowTitle('My Application')
         self.mainWidget.resize(self.MAIN_WINDOW_WIDTH_IN_PX, self.MAIN_WINDOW_HEIGHT_IN_PX)
         self.mainWidget.setWindowIcon(QtGui.QIcon("'logos/' + AstibotIcon.png"))
         
@@ -505,7 +507,7 @@ class UIGraph():
 
         self.empty = QtGui.QWidget()
         self.empty.setStyleSheet(self.STR_BORDER_BLOCK_STYLESHEET)
-        self.empty.setFixedWidth(120)
+        self.empty.setFixedWidth(160)
 
         self.vBoxRootButtons.addWidget(self.buttonSettings, QtCore.Qt.AlignRight)
         # self.vBoxRootButtons.addWidget(self.buttonDonation, QtCore.Qt.AlignRight)
@@ -579,15 +581,15 @@ class UIGraph():
         self.lblLivePrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         
         self.lblTotalGains = QtGui.QLabel(self.STR_LABEL_TOTAL_GAINS)
-        self.lblTotalGains.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblTotalGains.setStyleSheet(self.STR_QLABEL_STYLESHEET)
         
         self.StatsVBox.addWidget(self.lblLivePrice, QtCore.Qt.AlignLeft)
         self.StatsVBox.addWidget(self.lblTotalGains, QtCore.Qt.AlignLeft)
         
         self.lblCryptoAbbr = QtGui.QLabel(str(self.theSettings.SETT_GetSettings()["strCryptoType"]))
-        self.lblCryptoAbbr.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblCryptoAbbr.setStyleSheet(self.STR_TEXT_STYLESHEET)
         self.lblCryptoMoneyBalance = QtGui.QLabel(self.STR_LABEL_CRYPTO_BALANCE)
-        self.lblCryptoMoneyBalance.setStyleSheet(self.STR_QLABEL_BALANCE_STYLESHEET);
+        self.lblCryptoMoneyBalance.setStyleSheet(self.STR_QLABEL_BALANCE_STYLESHEET)
         
         self.lblCryptoLogo = QtGui.QLabel("lblLogo")
         pixmap = QtGui.QPixmap('logos/' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + 'Logo.png')
@@ -610,7 +612,7 @@ class UIGraph():
         
 
         self.lblFiatAbbr = QtGui.QLabel(str(self.theSettings.SETT_GetSettings()["strFiatType"]))
-        self.lblFiatAbbr.setStyleSheet(self.STR_QLABEL_STYLESHEET);
+        self.lblFiatAbbr.setStyleSheet(self.STR_TEXT_STYLESHEET);
         self.lblFiatBalance = QtGui.QLabel(self.STR_LABEL_FIAT_BALANCE)
         self.lblFiatBalance.setStyleSheet(self.STR_QLABEL_BALANCE_STYLESHEET);
         
@@ -618,8 +620,10 @@ class UIGraph():
         pixmap = QtGui.QPixmap('logos/' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + 'Logo.png')
         smaller_pixmap = pixmap.scaled(64, 64, QtCore.Qt.IgnoreAspectRatio, QtCore.Qt.FastTransformation)
         self.lblFiatLogo.setPixmap(smaller_pixmap)
-        
-        self.FiatHbox = QtGui.QHBoxLayout()
+
+        container = QtGui.QWidget()
+        self.FiatHbox = QtGui.QHBoxLayout(container)
+        container.setStyleSheet("background-color:black;")
         # self.FiatHbox.setContentsMargins(40, 10, 40, 0) #
         self.FiatVboxRight = QtGui.QVBoxLayout()
         
@@ -649,11 +653,11 @@ class UIGraph():
         self.lblTransPrice = QtGui.QLabel("Price")
         self.lblTransAmount = QtGui.QLabel("Amount")
         self.lblTransTime = QtGui.QLabel("Time")
-        self.lblTradePair.setFixedWidth(110)
-        self.lblOperation.setFixedWidth(110)
-        self.lblTransPrice.setFixedWidth(110)
-        self.lblTransAmount.setFixedWidth(110)
-        self.lblTransTime.setFixedWidth(130)
+        self.lblTradePair.setFixedWidth(100)
+        self.lblOperation.setFixedWidth(100)
+        self.lblTransPrice.setFixedWidth(100)
+        self.lblTransAmount.setFixedWidth(100)
+        self.lblTransTime.setFixedWidth(100)
         self.lblTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET);
         self.lblTransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET);
@@ -665,7 +669,7 @@ class UIGraph():
         self.rowHeadingHbox.addWidget(self.lblTransAmount, QtCore.Qt.AlignLeft)
         self.rowHeadingHbox.addWidget(self.lblTransTime, QtCore.Qt.AlignLeft)
         self.rowHeadingBlock = QtGui.QWidget()
-        self.rowHeadingBlock.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.rowHeadingBlock.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.rowHeadingBlock.setLayout(self.rowHeadingHbox)
         
         self.lblLast1TransTradePair = QtGui.QLabel("")
@@ -673,11 +677,11 @@ class UIGraph():
         self.lblLast1TransPrice = QtGui.QLabel("")
         self.lblLast1TransAmount = QtGui.QLabel("")
         self.lblLast1TransTime = QtGui.QLabel("")
-        self.lblLast1TransTradePair.setFixedWidth(110)
-        self.lblLast1TransOperation.setFixedWidth(110)
-        self.lblLast1TransPrice.setFixedWidth(110)
-        self.lblLast1TransAmount.setFixedWidth(110)
-        self.lblLast1TransTime.setFixedWidth(130)
+        self.lblLast1TransTradePair.setFixedWidth(100)
+        self.lblLast1TransOperation.setFixedWidth(100)
+        self.lblLast1TransPrice.setFixedWidth(100)
+        self.lblLast1TransAmount.setFixedWidth(100)
+        self.lblLast1TransTime.setFixedWidth(100)
         self.lblLast1TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
         self.lblLast1TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
         self.lblLast1TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
@@ -689,7 +693,7 @@ class UIGraph():
         self.row1Hbox.addWidget(self.lblLast1TransAmount, QtCore.Qt.AlignLeft)
         self.row1Hbox.addWidget(self.lblLast1TransTime, QtCore.Qt.AlignLeft)
         self.row1Block = QtGui.QWidget()
-        self.row1Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row1Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row1Block.setLayout(self.row1Hbox)
 
         self.lblLast2TransTradePair = QtGui.QLabel("")
@@ -697,11 +701,11 @@ class UIGraph():
         self.lblLast2TransPrice = QtGui.QLabel("")
         self.lblLast2TransAmount = QtGui.QLabel("")
         self.lblLast2TransTime = QtGui.QLabel("")
-        self.lblLast2TransTradePair.setFixedWidth(110)
-        self.lblLast2TransOperation.setFixedWidth(110)
-        self.lblLast2TransPrice.setFixedWidth(110)
-        self.lblLast2TransAmount.setFixedWidth(110)
-        self.lblLast2TransTime.setFixedWidth(130)
+        self.lblLast2TransTradePair.setFixedWidth(100)
+        self.lblLast2TransOperation.setFixedWidth(100)
+        self.lblLast2TransPrice.setFixedWidth(100)
+        self.lblLast2TransAmount.setFixedWidth(100)
+        self.lblLast2TransTime.setFixedWidth(100)
         self.lblLast2TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast2TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast2TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
@@ -713,7 +717,7 @@ class UIGraph():
         self.row2Hbox.addWidget(self.lblLast2TransAmount, QtCore.Qt.AlignLeft)
         self.row2Hbox.addWidget(self.lblLast2TransTime, QtCore.Qt.AlignLeft)
         self.row2Block = QtGui.QWidget()
-        self.row2Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row2Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row2Block.setLayout(self.row2Hbox)
         
         self.lblLast3TransTradePair = QtGui.QLabel("")
@@ -721,23 +725,23 @@ class UIGraph():
         self.lblLast3TransPrice = QtGui.QLabel("")
         self.lblLast3TransAmount = QtGui.QLabel("")
         self.lblLast3TransTime = QtGui.QLabel("")
-        self.lblLast3TransOperation.setFixedWidth(110)
-        self.lblLast3TransPrice.setFixedWidth(110)
-        self.lblLast3TransAmount.setFixedWidth(110)
-        self.lblLast3TransTradePair.setFixedWidth(110)
-        self.lblLast3TransTime.setFixedWidth(130)
-        self.lblLast3TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast3TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast3TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast3TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast3TransOperation.setFixedWidth(100)
+        self.lblLast3TransPrice.setFixedWidth(100)
+        self.lblLast3TransAmount.setFixedWidth(100)
+        self.lblLast3TransTradePair.setFixedWidth(100)
+        self.lblLast3TransTime.setFixedWidth(100)
+        self.lblLast3TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast3TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast3TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast3TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast3TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
         self.row3Hbox.addWidget(self.lblLast3TransTradePair, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransOperation, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransPrice, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransAmount, QtCore.Qt.AlignLeft)
         self.row3Hbox.addWidget(self.lblLast3TransTime, QtCore.Qt.AlignLeft)
         self.row3Block = QtGui.QWidget()
-        self.row3Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row3Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row3Block.setLayout(self.row3Hbox)
         
         self.lblLast4TransTradePair = QtGui.QLabel("")
@@ -745,23 +749,23 @@ class UIGraph():
         self.lblLast4TransPrice = QtGui.QLabel("")
         self.lblLast4TransAmount = QtGui.QLabel("")
         self.lblLast4TransTime = QtGui.QLabel("")
-        self.lblLast4TransTradePair.setFixedWidth(110)
-        self.lblLast4TransOperation.setFixedWidth(110)
-        self.lblLast4TransPrice.setFixedWidth(110)
-        self.lblLast4TransAmount.setFixedWidth(110)
-        self.lblLast4TransTime.setFixedWidth(130)
-        self.lblLast4TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast4TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast4TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
-        self.lblLast4TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
+        self.lblLast4TransTradePair.setFixedWidth(100)
+        self.lblLast4TransOperation.setFixedWidth(100)
+        self.lblLast4TransPrice.setFixedWidth(100)
+        self.lblLast4TransAmount.setFixedWidth(100)
+        self.lblLast4TransTime.setFixedWidth(100)
+        self.lblLast4TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast4TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast4TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast4TransAmount.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
+        self.lblLast4TransTime.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL)
         self.row4Hbox.addWidget(self.lblLast4TransTradePair, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransOperation, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransPrice, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransAmount, QtCore.Qt.AlignLeft)
         self.row4Hbox.addWidget(self.lblLast4TransTime, QtCore.Qt.AlignLeft)
         self.row4Block = QtGui.QWidget()
-        self.row4Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row4Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row4Block.setLayout(self.row4Hbox)
         
         self.lblLast5TransTradePair = QtGui.QLabel("")
@@ -769,11 +773,11 @@ class UIGraph():
         self.lblLast5TransPrice = QtGui.QLabel("")
         self.lblLast5TransAmount = QtGui.QLabel("")
         self.lblLast5TransTime = QtGui.QLabel("")
-        self.lblLast5TransTradePair.setFixedWidth(110)
-        self.lblLast5TransOperation.setFixedWidth(110)
-        self.lblLast5TransPrice.setFixedWidth(110)
-        self.lblLast5TransAmount.setFixedWidth(110)
-        self.lblLast5TransTime.setFixedWidth(130)
+        self.lblLast5TransTradePair.setFixedWidth(100)
+        self.lblLast5TransOperation.setFixedWidth(100)
+        self.lblLast5TransPrice.setFixedWidth(100)
+        self.lblLast5TransAmount.setFixedWidth(100)
+        self.lblLast5TransTime.setFixedWidth(100)
         self.lblLast5TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast5TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast5TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
@@ -785,7 +789,7 @@ class UIGraph():
         self.row5Hbox.addWidget(self.lblLast5TransAmount, QtCore.Qt.AlignLeft)
         self.row5Hbox.addWidget(self.lblLast5TransTime, QtCore.Qt.AlignLeft)
         self.row5Block = QtGui.QWidget()
-        self.row5Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row5Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row5Block.setLayout(self.row5Hbox)
         
         self.lblLast6TransTradePair = QtGui.QLabel("")
@@ -793,11 +797,11 @@ class UIGraph():
         self.lblLast6TransPrice = QtGui.QLabel("")
         self.lblLast6TransAmount = QtGui.QLabel("")
         self.lblLast6TransTime = QtGui.QLabel("")
-        self.lblLast6TransTradePair.setFixedWidth(110)
-        self.lblLast6TransOperation.setFixedWidth(110)
-        self.lblLast6TransPrice.setFixedWidth(110)
-        self.lblLast6TransAmount.setFixedWidth(110)
-        self.lblLast6TransTime.setFixedWidth(130)
+        self.lblLast6TransTradePair.setFixedWidth(100)
+        self.lblLast6TransOperation.setFixedWidth(100)
+        self.lblLast6TransPrice.setFixedWidth(100)
+        self.lblLast6TransAmount.setFixedWidth(100)
+        self.lblLast6TransTime.setFixedWidth(100)
         self.lblLast6TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast6TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast6TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
@@ -809,7 +813,7 @@ class UIGraph():
         self.row6Hbox.addWidget(self.lblLast6TransAmount, QtCore.Qt.AlignLeft)
         self.row6Hbox.addWidget(self.lblLast6TransTime, QtCore.Qt.AlignLeft)
         self.row6Block = QtGui.QWidget()
-        self.row6Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row6Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row6Block.setLayout(self.row6Hbox)
         
         self.lblLast7TransTradePair = QtGui.QLabel("")
@@ -817,11 +821,11 @@ class UIGraph():
         self.lblLast7TransPrice = QtGui.QLabel("")
         self.lblLast7TransAmount = QtGui.QLabel("")
         self.lblLast7TransTime = QtGui.QLabel("")
-        self.lblLast7TransTradePair.setFixedWidth(110)
-        self.lblLast7TransOperation.setFixedWidth(110)
-        self.lblLast7TransPrice.setFixedWidth(110)
-        self.lblLast7TransAmount.setFixedWidth(110)
-        self.lblLast7TransTime.setFixedWidth(130)
+        self.lblLast7TransTradePair.setFixedWidth(100)
+        self.lblLast7TransOperation.setFixedWidth(100)
+        self.lblLast7TransPrice.setFixedWidth(100)
+        self.lblLast7TransAmount.setFixedWidth(100)
+        self.lblLast7TransTime.setFixedWidth(100)
         self.lblLast7TransTradePair.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
         self.lblLast7TransPrice.setStyleSheet(self.STR_QLABEL_STYLESHEET_NORMAL);
@@ -833,7 +837,7 @@ class UIGraph():
         self.row7Hbox.addWidget(self.lblLast7TransAmount, QtCore.Qt.AlignLeft)
         self.row7Hbox.addWidget(self.lblLast7TransTime, QtCore.Qt.AlignLeft)
         self.row7Block = QtGui.QWidget()
-        self.row7Block.setStyleSheet(self.STR_USER_BLOCK_STYLESHEET)
+        self.row7Block.setStyleSheet(self.STR_TRANS_BLOCK_STYLESHEET)
         self.row7Block.setLayout(self.row7Hbox)
         # self.historyVbox.addLayout(self.rowHeadingHbox, QtCore.Qt.AlignRight)
         # self.historyVbox.addLayout(self.row1Hbox, QtCore.Qt.AlignRight)
@@ -849,17 +853,17 @@ class UIGraph():
         
         #   moving
         self.lblCurrentState = QtGui.QLabel(self.STR_LABEL_CURRENT_STATE)
-        self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblCurrentState.setWordWrap(True);
+        self.lblCurrentState.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+        self.lblCurrentState.setWordWrap(True)
         self.lblCurrentState.setFixedHeight(60)
-        # self.lblCurrentState.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
+        # self.lblCurrentState.setFixedWidth(self.MAIN_WINDOW_WIDTH_IN_PX / 4)
         self.lblInfo = LabelClickable(self.STR_LABEL_INFO)
         self.lblInfo.setFixedHeight(60)
-        self.lblInfo.setStyleSheet(self.STR_QLABEL_STYLESHEET);
-        self.lblInfo.setWordWrap(True);
-        # self.lblInfo.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
+        self.lblInfo.setStyleSheet(self.STR_QLABEL_STYLESHEET)
+        self.lblInfo.setWordWrap(True)
+        # self.lblInfo.setFixedWidth(self.MAIN_WINDOW_WIDTH_IN_PX / 4)
         # Add widgets to layout
-        self.mainGridLayout = QtGui.QGridLayout()   
+        self.mainGridLayout = QtGui.QGridLayout()
 
         self.mainGridLayout.addWidget(self.FiatBlock, 1, 1)
         self.mainGridLayout.addWidget(self.CryptoBlock, 1, 2)
@@ -1032,8 +1036,20 @@ class UIGraph():
         self.plot1GraphLivePrice.setData(x=self.graphDataTime, y=self.graphDataBitcoinPrice)
         # self.plot1GraphSmoothPriceFast.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothFast)
         # self.plot1GraphSmoothPriceSlow.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceSmoothSlow)
-        self.plot1Markers1.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker1)  # buy
-        self.plot1Markers2.setData(x=self.graphDataTime, y=self.graphDataBitcoinPriceMarker2)  # sell
+        time1_axis = []
+        time2_axis = []
+        price1_axis = []
+        price2_axis = []
+        for i in range(len(self.graphDataTime)):
+            if not self.graphDataBitcoinPriceMarker1[i] == 0:
+                time1_axis.append(self.graphDataTime[i])
+                price1_axis.append(self.graphDataBitcoinPriceMarker1[i])
+            if not self.graphDataBitcoinPriceMarker2[i] == 0:
+                time2_axis.append(self.graphDataTime[i])
+                price2_axis.append(self.graphDataBitcoinPriceMarker2[i])
+
+        self.plot1Markers1.setData(x=time1_axis, y=price1_axis)  # buy
+        self.plot1Markers2.setData(x=time2_axis, y=price2_axis)  # sell
         # self.plot1GraphRiskLine.setData(x=self.graphDataTime, y=self.graphDataBitcoinRiskLine)
         # self.plot2GraphIndicatorMACD.setData(x=self.graphDataTime, y=self.graphDataIndicatorMACD, fillLevel=0, brush=(255, 243, 20, 80))
         # Update Y avis scale in live market mode
@@ -1196,7 +1212,7 @@ class UIGraph():
                 self.lblLast7TransOperation.setStyleSheet(self.STR_QLABEL_STYLESHEET_SELL)
 
     def UIGR_updateAccountsBalance(self, EURBalance, CryptoBalance):
-        self.strEURBalance = str(EURBalance)
+        self.strEURBalance = str(round(EURBalance, 2))
 
         # Avoid display like 1e-7
         if (CryptoBalance <= theConfig.CONFIG_CRYPTO_PRICE_QUANTUM):
@@ -1205,31 +1221,23 @@ class UIGraph():
 
         # If there's no risk from being called from a background thread, update UI here
         if (self.isContinuousGraphRefreshEnabled == False):
-            if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
-                strSimulationPrecision = " (Live Trade)"
-            else:
-                strSimulationPrecision = " (Simulation)"
             # self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
             # self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
 
-            self.lblFiatAbbr.setText(str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
+            self.lblFiatAbbr.setText(str(self.theSettings.SETT_GetSettings()["strFiatType"]))
             self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance)
-            self.lblCryptoAbbr.setText(str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
+            self.lblCryptoAbbr.setText(str(self.theSettings.SETT_GetSettings()["strCryptoType"]))
             self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance)
         else:
             self.safeUIRefreshIsRequested = True
 
     def UIGR_SAFE_updateAccountsBalance(self):
-        if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
-            strSimulationPrecision = " (Live Trade)"
-        else:
-            strSimulationPrecision = " (Simulation)"
         # self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + strSimulationPrecision)
         # self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance + ' ' + str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
-            self.lblFiatAbbr.setText(str(self.theSettings.SETT_GetSettings()["strFiatType"])+ strSimulationPrecision)
-            self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance)
-            self.lblCryptoAbbr.setText(str(self.theSettings.SETT_GetSettings()["strCryptoType"]) + strSimulationPrecision)
-            self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance)
+        self.lblFiatAbbr.setText(str(self.theSettings.SETT_GetSettings()["strFiatType"]))
+        self.lblFiatBalance.setText(self.STR_LABEL_FIAT_BALANCE + self.strEURBalance)
+        self.lblCryptoAbbr.setText(str(self.theSettings.SETT_GetSettings()["strCryptoType"]))
+        self.lblCryptoMoneyBalance.setText(self.STR_LABEL_CRYPTO_BALANCE + self.strCryptoBalance)
 
     def UIGR_updatePriceLbl(self, newPrice):
 
@@ -1367,7 +1375,7 @@ class UIGraph():
         time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
         markerNumber = 1 if op == 'BUY' else 2
         if time_idx < len(self.graphDataBitcoinPriceMarker1) or time_idx < len(self.graphDataBitcoinPriceMarker2):
-            print("UIGR - Marker added at %s" % price)
+            # print("UIGR - Marker added at %s" % price)
             if (markerNumber == 1):
                 # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
                 self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]
