@@ -1373,6 +1373,8 @@ class UIGraph():
         while(self.graphDataTime[0] == 0):
             time.sleep(0)
         time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
+        if time_idx < 0:
+            return
         markerNumber = 1 if op == 'BUY' else 2
         if time_idx < len(self.graphDataBitcoinPriceMarker1) or time_idx < len(self.graphDataBitcoinPriceMarker2):
             # print("UIGR - Marker added at %s" % price)
