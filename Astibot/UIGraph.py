@@ -1367,7 +1367,7 @@ class UIGraph():
         time_idx = int((time_ - self.graphDataTime[0]) / 10 - 1)
         markerNumber = 1 if op == 'BUY' else 2
         if time_idx < len(self.graphDataBitcoinPriceMarker1) or time_idx < len(self.graphDataBitcoinPriceMarker2):
-            print("UIGR - Marker added at %s" % price)
+            # print("UIGR - Marker added at %s" % price)
             if (markerNumber == 1):
                 # Added on the last-but-one sample in order to avoid last sample to be overwritten by UIGR_updateNextIterationData
                 self.graphDataBitcoinPriceMarker1[time_idx] = self.graphDataBitcoinPrice[time_idx]

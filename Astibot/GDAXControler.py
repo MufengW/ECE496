@@ -455,7 +455,7 @@ class GDAXControler():
                 # print("GDAX - Lowest Ask: %s" % self.tickBestAskPrice)
 
                 self.PriceSpread = self.tickBestBidPrice - self.tickBestAskPrice
-                self.theUIGraph.UIGR_updateConnectionText("Price data received from Coinbase Pro server")
+                self.theUIGraph.UIGR_updateConnectionText("Price data received from Binance server")
 
                 # Refresh account balances
                 # Only do it if GDAX controler is OK in authenticated mode
@@ -665,13 +665,13 @@ class GDAXControler():
         if theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET:
             if theConfig.CONFIG_ENABLE_REAL_TRANSACTIONS:
                 # Prepare the right amount to buy precision. Smallest GDAX unit is 0.00000001
-                amountToBuyInBTC = round(amountToBuyInBTC, 8)
+                amountToBuyInBTC = round(amountToBuyInBTC, 5)
 
                 params = {
                     "symbol": 'BTCUSDT',
                     "side": "BUY",
                     "type": "MARKET",
-                    "quantity": amountToBuyInBTC,
+                    "quantity": amountToBuyInBTC
                 }
                 buyRequestReturn = self.clientAuth.new_order(**params)
                 print("GDAX - Actual buy sent with MARKET order. Amount is %s BTC"
@@ -679,11 +679,16 @@ class GDAXControler():
 
                 print("GDAX - Buy Request return is : \n %s \nGDAX - End of Request Return"
                       % buyRequestReturn)
-
+                time.sleep(0.1)
+                self.refreshTransactionHistory()
+                time.sleep(0.1)
+                self.refreshAccounts()
+                time.sleep(0.1)
                 self.requestAccountsBalanceUpdate = True
+                self.theUIGraph.UIGR_updateTransactionHistory(self.GDAX_GetTransactionHistory())
 
                 # Check if order was successful or not depending on existence of an order ID in the request response
-                if 'id' in buyRequestReturn:
+                if 'orderId' in buyRequestReturn:
                     print("GDAX - Buy order has been interpreted as successful")
                     return True
                 else:
@@ -698,12 +703,12 @@ class GDAXControler():
         if theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET:
             if theConfig.CONFIG_ENABLE_REAL_TRANSACTIONS:
                 # Prepare the right amount to sell precision. Smallest GDAX unit is 0.00000001
-                amountToSellInBTC = round(amountToSellInBTC, 8)
+                amountToSellInBTC = round(amountToSellInBTC, 5)
                 params = {
                     "symbol": 'BTCUSDT',
                     "side": "SELL",
                     "type": "MARKET",
-                    "quantity": amountToSellInBTC,
+                    "quantity": amountToSellInBTC
                 }
 
                 # Send Market order
@@ -721,7 +726,7 @@ class GDAXControler():
                 self.theUIGraph.UIGR_updateTransactionHistory(self.GDAX_GetTransactionHistory())
 
                 # Check if order was successful or not depending on existence of an order ID in the request response
-                if 'id' in sellRequestReturn:
+                if 'orderId' in sellRequestReturn:
                     print("GDAX - Sell order has been interpreted as successful")
                     return True
                 else:

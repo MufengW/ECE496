@@ -18,7 +18,7 @@ class Settings(object):
                     "strTradingPair": "BTCUSDT",
                     "strFiatType": "USDT",
                     "strCryptoType": "BTC",
-                    "investPercentage": 90,
+                    "investPercentage": 5,
                     "platformTakerFee": 0.5,
                     "sellTrigger" : 0.0,
                     "autoSellThreshold": 0.0,
